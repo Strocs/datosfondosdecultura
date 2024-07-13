@@ -1,12 +1,12 @@
-import { fetchData, getFileURL } from './index.js'
+import { fetchUrl, getPdfLink } from './index.js'
 
 export async function scraper (url) {
   try {
     let data = []
     const year = new Date().getFullYear()
 
-    const doc = await fetchData(url)
-    const pdfLink = getFileURL(doc)
+    const doc = await fetchUrl(url)
+    const pdfLink = getPdfLink(doc)
 
     if (pdfLink) data.push({ [year]: pdfLink })
 

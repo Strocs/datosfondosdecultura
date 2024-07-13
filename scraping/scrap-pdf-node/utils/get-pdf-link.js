@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 
-export function getFileURL (data) {
+export function getPdfLink (data) {
   const $ = cheerio.load(data)
 
   return $('.su-spoiler')

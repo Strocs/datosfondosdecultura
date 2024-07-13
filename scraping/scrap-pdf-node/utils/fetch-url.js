@@ -1,4 +1,4 @@
-export async function fetchData (url) {
+export async function fetchUrl (url) {
   try {
     const res = await fetch(url)
     return await res.text()
