@@ -1,0 +1,482 @@
+[
+  {
+    "id": 721751,
+    "order": 1,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 721751,
+    "line": {
+      "id": "culturas-regionales",
+      "name": "Línea Culturas Regionales",
+      "modality": "Salvaguardia Cultural Del Pueblo Tribal Afrodescendiente"
+    },
+    "projectName": "Carbón De Alma Negra",
+    "projectOwner": "Patricio Alberto Banda Gonzalez",
+    "amountAllocated": 9602700,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 722229,
+    "order": 1,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 722229,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Taller De Arte Sarañani!: Artesanías De La Ruta De Las Misiones-Saraña",
+    "projectOwner": "Fundación Altiplano",
+    "amountAllocated": 9415000,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 723220,
+    "order": 2,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 723220,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Escuela De Formación Artesanal 2024 De La Escuela De Artes Y Oficio Artesanal Manos Con Memoria",
+    "projectOwner": "Víctor Andrés Mérida Fuentes",
+    "amountAllocated": 17586394,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 723830,
+    "order": 3,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 723830,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Actividades Formativas, Arquitectura Para El Desarrollo, Arica 1950- 1976,",
+    "projectOwner": "Fundación Iyari O Arica Activa",
+    "amountAllocated": 17636900,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 717461,
+    "order": 4,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 717461,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Curso De Orfebrería Nivel Intermedio Para Mujeres Adultas Mayores De Arica",
+    "projectOwner": "Ana María Rivera Candía",
+    "amountAllocated": 8408790,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 720111,
+    "order": 5,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 720111,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "2º Confluencias",
+    "projectOwner": "Diego Véliz Quezada",
+    "amountAllocated": 9963547,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 724793,
+    "order": 6,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 724793,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Aprendamos Con Fotografías: Explorando Mi Territorio E Identidad. Talleres Creativos Con Niñas, Niños Y Niñes",
+    "projectOwner": "Karem Angélica Pereira Acuña",
+    "amountAllocated": 11807129,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 714687,
+    "order": 8,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 714687,
+    "line": {
+      "id": "",
+      "name": "",
+      "modality": "Única"
+    },
+    "projectName": "“Memorias De Una Historia A Pedacitos”",
+    "projectOwner": "Carolina Guerra Olmos",
+    "amountAllocated": 12000000,
+    "status": "",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 720835,
+    "order": 9,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 720835,
+    "line": {
+      "id": "",
+      "name": "",
+      "modality": "Única"
+    },
+    "projectName": "Talleres Tikaspompon En Fieltro En Arica Y Camarones",
+    "projectOwner": "Fundación Ariaka",
+    "amountAllocated": 7649270,
+    "status": "",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 719912,
+    "order": 1,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 719912,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Programación De Talleres De La Mesa De Dibujo",
+    "projectOwner": "Alejandra Palacios Heredia",
+    "amountAllocated": 15136245,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 722275,
+    "order": 2,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 722275,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Multiarte. Taller Laboral Protegido De Artes Visuales",
+    "projectOwner": "Yineva Rojo Alquinta",
+    "amountAllocated": 12595661,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 723458,
+    "order": 3,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 723458,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Taller De Textiles Para El Adulto Mayor",
+    "projectOwner": "Mercedes Tancara Apaza",
+    "amountAllocated": 15449926,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 714931,
+    "order": 4,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 714931,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Segundo Ciclo De Aprendizaje Fotográfico Y Herramientas Digitales A Través De Equipo Celular Enfocado En Los Adultos Mayores De La Localidad De Acha",
+    "projectOwner": "Alexander Infante Flores",
+    "amountAllocated": 16020775,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 721815,
+    "order": 5,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 721815,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Taller De Laboratorio Fotográficos Análogo En B&N En La Región De Arica. 3Era.Versión",
+    "projectOwner": "Mauricio Lazo Fuentes",
+    "amountAllocated": 16568682,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 717257,
+    "order": 6,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 717257,
+    "line": {
+      "id": "actividades-formativas",
+      "name": "Línea Actividades Formativas",
+      "modality": "Única"
+    },
+    "projectName": "Activarte “Educación Artística Y Educación Emocional Para Un Intercambio Y Encuentro Intergeneracional De La Región De Arica Y Parinacota",
+    "projectOwner": "Corporación Cultural El Tren",
+    "amountAllocated": 19290000,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 716137,
+    "order": 1,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 716137,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Colores En El Camino",
+    "projectOwner": "Centro Cultural Plumas Y Tablas",
+    "amountAllocated": 16778260,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 717532,
+    "order": 2,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 717532,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Difusión Colorea El Carnaval",
+    "projectOwner": "Magdalena Chiffelle Ansaldo",
+    "amountAllocated": 15725408,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 724652,
+    "order": 3,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 724652,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Difunde! Red De Difusión De Espacios Culturales Y Artistas De La Región De Arica Y Parinacota",
+    "projectOwner": "Corporación Red De Espacios Culturales Arica Y Parinacota",
+    "amountAllocated": 25000000,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 724886,
+    "order": 4,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 724886,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Soy Afrodescendiente. Revista Especializada De Temáticas Afro En Chile",
+    "projectOwner": "Claudia Parra Aravena",
+    "amountAllocated": 10000000,
+    "status": "Selección",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 713890,
+    "order": 1,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 713890,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Difusión Del Patrimonio Arqueologico Del Norte De Chile En Plataformas Multimediales, Del Museo San Miguel De Azapa, Etapa 3",
+    "projectOwner": "Mauricio Lazo Fuentes",
+    "amountAllocated": 23953675,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 722259,
+    "order": 2,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 722259,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Plataforma De Oficios: Difusión De Maestr@S Y Creador@S De Oficios De La Región De Arica Y Parinacota",
+    "projectOwner": "Beatriz Yuste Miguel",
+    "amountAllocated": 17539840,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 715232,
+    "order": 3,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 715232,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Difusión De Marcas",
+    "projectOwner": "Daniela Echeverría Donoso",
+    "amountAllocated": 8369499,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 725549,
+    "order": 4,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 725549,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Bruna Truffa Digital",
+    "projectOwner": "Bruna Truffa Solá",
+    "amountAllocated": 16212450,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  },
+  {
+    "id": 723864,
+    "order": 5,
+    "region": "Arica Y Parinacota",
+    "year": 2024,
+    "folio": 723864,
+    "line": {
+      "id": "difusion",
+      "name": "Línea Difusión",
+      "modality": "Única"
+    },
+    "projectName": "Iluminando Tu Cruz: Tradición Afrodescendiente En El Extremo Norte De Chile",
+    "projectOwner": "Ambar Castro Lizana",
+    "amountAllocated": 18945320,
+    "status": "Lista De Espera",
+    "type": {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    }
+  }
+]
