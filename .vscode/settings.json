@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["pymupdf", "unidecode"]
+  "cSpell.words": ["pymupdf", "unidecode"],
+  "python.analysis.extraPaths": ["./src/scripts/python/utils"]
 }
