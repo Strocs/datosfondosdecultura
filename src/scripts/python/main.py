@@ -1,17 +1,11 @@
 import pymupdf
 import sys
 import io
+from utils import *
 
-from utils import (
-    format_id,
-    add_obj_to_list,
-    format_amount,
-    normalize_title,
-    save_data_on_json,
-    get_status_and_line_from_row,
-    strict_int,
-    find_region,
-)
+# TODO: Read db pdf-url file for current year
+# TODO: Get year -> loop by type -> loop by link -> save on db
+
 
 PDF = sys.stdin.buffer.read()
 

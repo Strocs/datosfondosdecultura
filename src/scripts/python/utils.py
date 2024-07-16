@@ -50,57 +50,6 @@ def format_amount(amount: str) -> int:
         return 0
 
 
-def save_data_on_json(data: list, file_name: str) -> None:
-    db_path = os.path.abspath("../db/")
-    os.makedirs(db_path, exist_ok=True)
-
-    file_path = os.path.abspath(f"{db_path}/{file_name}")
-
-    def save_data(entry):
-        # save data if doest not exist
-        json.dump(entry, outfile, ensure_ascii=False)
-
-    try:
-        if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
-            with open(file_path, "w", encoding="utf-8") as outfile:
-                outfile.write("[\n")
-                save_data(data)
-                outfile.write("\n]")
-            print(f"Data saved on {file_path}")
-            return
-
-        with open(file_path, "r+", encoding="utf-8") as outfile:
-
-            # existing_data = json.load(outfile)
-            # for entry in existing_data:
-            #     if entry.get("id") == data.get("id"):
-            #         print(f"Data with ID {data.get('id')} already exists.")
-            #         return
-
-            outfile.seek(0, os.SEEK_END)  # Move the cursor to the end of the file
-            outfile.seek(
-                outfile.tell() - 1, os.SEEK_SET
-            )  # Move the cursor to the position just before the last character
-
-            if outfile.read(1) == "]":
-                outfile.seek(-1, os.SEEK_END)
-                outfile.write(",\n")
-                save_data(data)
-                outfile.write("\n]")
-            else:
-                outfile.seek(0, os.SEEK_END)
-                outfile.write(",\n")
-                save_data(data)
-                outfile.write("\n]")
-
-            save_data(data)
-            outfile.write("\n]")
-
-        print(f"Data saved on {file_path}")
-    except Exception as e:
-        print(f"Error saving data on {file_path}: {str(e)}")
-
-
 def strict_int(value: str) -> int:
     return int(re.sub(r"\D", "", value))
 
@@ -122,3 +71,69 @@ def find_region(query: str):
                 "short_name": value["short_name"],
                 "name": value["name"],
             }
+
+
+def is_data_exist_on_db() -> bool:
+    # save data if doest not exist
+    # existing_data = json.load(outfile)
+    # for entry in existing_data:
+    #     if entry.get("id") == data.get("id"):
+    #         print(f"Data with ID {data.get('id')} already exists.")
+    #         return
+    return False
+
+
+def get_file_path_from_db(file_name: str) -> str:
+    db_path = os.path.abspath("../db/")
+    os.makedirs(db_path, exist_ok=True)
+    return os.path.abspath(f"{db_path}/{file_name}")
+
+
+def get_data_from_json(file_name: str) -> list:
+    file_path = get_file_path_from_db(file_name)
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            data = json.load(file)
+        return data
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+        return []
+    except json.JSONDecodeError:
+        print(f"Error decoding JSON file {file_path}.")
+        return []
+
+
+def save_data_on_json(data: list, file_name: str) -> None:
+    file_path = get_file_path_from_db(file_name)
+
+    try:
+        if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
+            with open(file_path, "w", encoding="utf-8") as outfile:
+                outfile.write("[\n")
+                json.dump(data, outfile, ensure_ascii=False)
+                outfile.write("\n]")
+            print(f"Data saved on {file_path}")
+            return
+
+        with open(file_path, "r+", encoding="utf-8") as outfile:
+
+            outfile.seek(0, os.SEEK_END)  # Move the cursor to the end of the file
+            outfile.seek(
+                outfile.tell() - 1, os.SEEK_SET
+            )  # Move the cursor to the position just before the last character
+
+            if outfile.read(1) == "]":
+                outfile.seek(-1, os.SEEK_END)
+                outfile.write(",\n")
+                json.dump(data, outfile, ensure_ascii=False)
+                outfile.write("\n]")
+            else:
+                outfile.seek(0, os.SEEK_END)
+                outfile.write(",\n")
+                json.dump(data, outfile, ensure_ascii=False)
+                outfile.write("\n]")
+
+        print(f"Data saved on {file_path}")
+    except Exception as e:
+        print(f"Error saving data on {file_path}: {str(e)}")
