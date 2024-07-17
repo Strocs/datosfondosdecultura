@@ -5,13 +5,11 @@ import os
 import requests
 from utils import *
 
-
 current_year = 2024
 
 db_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "db", "pdf-url")
 )
-
 
 with open(f"{db_path}/{current_year}.json", "r", encoding="utf-8") as url_pdf_file:
     pdf_file = json.load(url_pdf_file)
@@ -80,7 +78,7 @@ with open(f"{db_path}/{current_year}.json", "r", encoding="utf-8") as url_pdf_fi
                                     },
                                     "projectName": normalize_title(title),
                                     "projectOwner": normalize_title(owner),
-                                    "amountAssigned": format_amount(amount),
+                                    "amountAssigned": strict_int(amount),
                                     "status": project_status,
                                     "type": TYPE,
                                 },
