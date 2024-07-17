@@ -1,93 +1,88 @@
 import json
 import pymupdf
-import sys
 import io
 import os
+import requests
 from utils import *
 
-# TODO: Read db pdf-url file for current year
-# TODO: Get year -> loop by type -> loop by link -> save on db
 
 current_year = 2024
+
 db_path = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "db", "pdf-url")
 )
 
-with open(f"{db_path}/{current_year}.json", "r", encoding="utf-8") as pdfFile:
-    doc = json.load(pdfFile)
-    PROJECT_YEAR = doc["year"]
 
+with open(f"{db_path}/{current_year}.json", "r", encoding="utf-8") as url_pdf_file:
+    pdf_file = json.load(url_pdf_file)
+    PROJECT_YEAR = pdf_file["year"]
 
-# DOC = pymupdf.open(stream=io.BytesIO(PDF), filetype="pdf")
+    for PROJECT_TYPE in pdf_file["data"]:
+        TYPE = {"id": format_id(PROJECT_TYPE), "name": PROJECT_TYPE}
+        save_data_on_json(TYPE, "types.json")
 
-# NUMBER_OF_PAGES = len(DOC)
+        pdf_url_list = pdf_file["data"][PROJECT_TYPE]
 
-# PROJECT_TYPE = "Fondart " + sys.argv[1]
+        for pdf_url in pdf_url_list:
+            response = requests.get(pdf_url)
+            response.raise_for_status()
 
-# type_list = [
-#     {"id": format_id(PROJECT_TYPE), "name": PROJECT_TYPE},
-# ]
+            DOC = pymupdf.open(stream=io.BytesIO(response.content), filetype="pdf")
 
-# line_list = []
-# project_list = []
+            project_line = {"id": "", "name": ""}
+            project_status = ""
 
-# line = {"id": "", "name": ""}
-# t_status = ""
+            for page in DOC:
+                tables = page.find_tables().tables  # type: ignore
 
-# for page_number in range(NUMBER_OF_PAGES):
+                if len(tables) > 0:  # avoid pages without tables
 
-#     tables = DOC[page_number].find_tables().tables  # type: ignore
+                    for table in tables:
+                        table = table.extract()
 
-#     # avoid pages without tables
-#     if len(tables) > 0:
+                        # Remove row with titles of columns
+                        if len(table) > 1 and any(
+                            section == "FOLIO" for section in table[1]
+                        ):
+                            table.pop(1)
 
-#         for table in tables:
-#             table = table.extract()
+                        for row in table:
 
-#             # Remove row with titles of columns
-#             if len(table) > 1 and any(section == "FOLIO" for section in table[1]):
-#                 table.pop(1)
+                            # If the first row have at least one None value, is head row with status and project line
+                            if None in row:
+                                [status, line] = get_status_and_line_from_row(table[0])
 
-#             for row in table:
+                                # Save in main scope status and project line
+                                project_line = {
+                                    "id": format_id(line),
+                                    "name": line,
+                                }
+                                project_status = status
 
-#                 # If the first row have at least one None value, is head row with status and project line
-#                 if None in row:
-#                     [status, project_line] = get_status_and_line_from_row(table[0])
+                                save_data_on_json(project_line, "lines.json")
+                                continue
 
-#                     # Save in main scope status and project line
-#                     line = {
-#                         "id": format_id(project_line),
-#                         "name": project_line,
-#                     }
-#                     t_status = status
+                            # avoid first column if row have 7 columns
+                            try:
+                                [_, region, folio, modality, title, owner, amount] = row
+                            except ValueError:
+                                [region, folio, modality, title, owner, amount] = row
 
-#                     add_obj_to_list(line_list, line)
-#                     continue
-
-#                 try:
-#                     [_, region, folio, modality, title, owner, amount] = row
-#                 except ValueError:
-#                     [region, folio, modality, title, owner, amount] = row
-
-#                 add_obj_to_list(
-#                     project_list,
-#                     {
-#                         "id": strict_int(folio),
-#                         "region": find_region(region),
-#                         "year": PROJECT_YEAR,
-#                         "folio": strict_int(folio),
-#                         "line": {**line, "modality": normalize_title(modality)},
-#                         "projectName": normalize_title(title),
-#                         "projectOwner": normalize_title(owner),
-#                         "amountAssigned": format_amount(amount),
-#                         "status": t_status,
-#                         "type": type_list[0],
-#                     },
-#                 )
-
-
-# DOC.close()
-
-# save_data_on_json(project_list, "projects.json")
-# save_data_on_json(line_list, "lines.json")
-# save_data_on_json(type_list, "types.json")
+                            save_data_on_json(
+                                {
+                                    "id": strict_int(folio),
+                                    "region": find_region(region),
+                                    "year": PROJECT_YEAR,
+                                    "folio": strict_int(folio),
+                                    "line": {
+                                        **project_line,
+                                        "modality": normalize_title(modality),
+                                    },
+                                    "projectName": normalize_title(title),
+                                    "projectOwner": normalize_title(owner),
+                                    "amountAssigned": format_amount(amount),
+                                    "status": project_status,
+                                    "type": TYPE,
+                                },
+                                "projects.json",
+                            )
