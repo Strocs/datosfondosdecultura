@@ -1,5 +1,5 @@
 {
   "cSpell.words": ["pymupdf", "unidecode"],
-  "python.analysis.extraPaths": ["./src/scripts/python/utils"],
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true
 }
