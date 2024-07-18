@@ -1,5 +1,5 @@
 - [ ] Clean (maybe refactor) save data on db/json
 - [x] Avoid duplicate types on json
-- [ ] Fix lines processed data / Some lines have duplicates, ids are formatted wrong and some names are bad
-- [ ] Fix format ids fn in python to return correct ids structures
+- [x] Fix lines processed data / Some lines have duplicates, ids are formatted wrong and some names are bad
+- [x] Fix format ids fn in python to return correct ids structures
 - [ ] Evaluate if its better use pdf2docx for parse pdf to extract tables

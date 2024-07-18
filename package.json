@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "scrape": "node ./src/scripts/js/scrape.js",
-    "parse:pdf": "py src/scripts/python/main.py"
+    "scrape": "node scripts/js/scrape.js",
+    "parse:pdf": "py scripts/python/main.py"
   },
   "dependencies": {
     "react": "^18",
