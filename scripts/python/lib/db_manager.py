@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 import json
 import os
 
@@ -34,7 +34,7 @@ class DBManager:
                 with open(file_path, "w", encoding="utf-8") as db_file:
                     template = {
                         "id": file,
-                        "lastUpdate": date.today(),
+                        "lastUpdate": str(datetime.now()),
                         "data": [],
                     }
                     json.dump(template, db_file, ensure_ascii=False)
@@ -55,7 +55,7 @@ class DBManager:
 
                     new_data = {
                         **db_data,
-                        "lastUpdate": date.today(),
+                        "lastUpdate": str(datetime.now()),
                         "data": data,
                     }
 
