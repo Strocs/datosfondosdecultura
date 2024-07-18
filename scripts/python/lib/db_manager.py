@@ -8,8 +8,8 @@ from utils import normalize_text
 class DBManager:
     def __init__(self, use_json=True):
         self.use_json = use_json
-        self._path = ""
-        self._data_db_names = ["lines", "projects", "regions", "types", "pdf-links"]
+        self.__path = ""
+        self.__data_db_names = ["lines", "projects", "regions", "types", "pdf-links"]
 
     def connect(self):
         if self.use_json:
@@ -17,14 +17,14 @@ class DBManager:
                 os.path.join(os.path.dirname(__file__), "..", "..", "..", "db")
             )
             os.makedirs(db_path, exist_ok=True)
-            self._path = os.path.abspath(db_path)
+            self.__path = os.path.abspath(db_path)
         else:
             # Do SQL connection
             raise ValueError("SQL Connection is not allowed yet.")
 
     def get(self, file: str):
         if self.use_json:
-            file_path = os.path.join(self._path, f"{file}.json")
+            file_path = os.path.join(self.__path, f"{file}.json")
             try:
                 with open(file_path, "r", encoding="utf-8") as db_file:
                     db_data = json.load(db_file)
@@ -48,7 +48,7 @@ class DBManager:
 
     def save(self, file: str, data: list):
         if self.use_json:
-            file_path = os.path.join(self._path, f"{file}.json")
+            file_path = os.path.join(self.__path, f"{file}.json")
             try:
                 with open(file_path, "w", encoding="utf-8") as db_file:
                     db_data = json.load(db_file)
@@ -70,7 +70,7 @@ class DBManager:
 
     def find(self, query: str, where):
         if self.use_json:
-            if where not in self._data_db_names:
+            if where not in self.__data_db_names:
                 print(f"{where} is not a valid database name.")
                 return None
 

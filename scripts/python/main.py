@@ -11,7 +11,7 @@ current_year = 2024
 db = DBManager(use_json=True)
 db.connect()
 
-links_path = os.path.join(db._path, f"{current_year}.json")
+links_path = os.path.join(db.__path, f"{current_year}.json")
 
 
 # args[1] -> <year>: search for year file in db/links
