@@ -1,0 +1,15 @@
+{
+  "id": "types",
+  "lastUpdate": "",
+  "length": "",
+  "data": [
+    {
+      "id": "fondart-regional",
+      "name": "Fondart Regional"
+    },
+    {
+      "id": "fondart-nacional",
+      "name": "Fondart Nacional"
+    }
+  ]
+}

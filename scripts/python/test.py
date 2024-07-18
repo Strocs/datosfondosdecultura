@@ -1,8 +1,9 @@
-from lib.db_connection import DBConnection
+from lib.db_manager import DBManager
 
 
-db = DBConnection(use_json=True)
+db = DBManager(use_json=True)
 db.connect()
 
-proj = db.get_data("projects.json")
-print(len(proj))  # type: ignore
+result = db.find("2024", "pdf-links")
+
+print(result["data"] if result is not None else None)

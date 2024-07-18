@@ -1,5 +1,25 @@
 {
-  "cSpell.words": ["inea", "ínea", "organizacion", "pymupdf", "unidecode"],
+  "cSpell.words": [
+    "antofagasta",
+    "araucania",
+    "atacama",
+    "aysen",
+    "biobio",
+    "coquimbo",
+    "inea",
+    "ínea",
+    "magallanes",
+    "Ñuble",
+    "ohiggins",
+    "organizacion",
+    "parinacota",
+    "pymupdf",
+    "rios",
+    "tarapaca",
+    "Tarapacá",
+    "unidecode",
+    "valparaiso"
+  ],
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true
 }

@@ -1,0 +1,87 @@
+{
+  "id": "regions",
+  "lastUpdate": "",
+  "length": "",
+  "data": [
+    {
+      "id": "arica-y-parinacota",
+      "short_name": "Arica Y Parinacota",
+      "name": "Región de Arica Y Parinacota"
+    },
+    {
+      "id": "tarapaca",
+      "short_name": "Tarapacá",
+      "name": "Región de Tarapacá"
+    },
+    {
+      "id": "antofagasta",
+      "short_name": "Antofagasta",
+      "name": "Región de Antofagasta"
+    },
+    {
+      "id": "atacama",
+      "short_name": "Atacama",
+      "name": "Región de Atacama"
+    },
+    {
+      "id": "coquimbo",
+      "short_name": "Coquimbo",
+      "name": "Región de Coquimbo"
+    },
+    {
+      "id": "valparaiso",
+      "short_name": "Valparaíso",
+      "name": "Región de Valparaíso"
+    },
+    {
+      "id": "metropolitana",
+      "short_name": "Metropolitana de Santiago",
+      "name": "Región Metropolitana de Santiago"
+    },
+    {
+      "id": "ohiggins",
+      "short_name": "O'higgins",
+      "name": "Región del Libertador General Bernardo O'Higgins"
+    },
+    {
+      "id": "maule",
+      "short_name": "Maule",
+      "name": "Región del Maule"
+    },
+    {
+      "id": "nuble",
+      "short_name": "Ñuble",
+      "name": "Región de Ñuble"
+    },
+    {
+      "id": "biobio",
+      "short_name": "Biobío",
+      "name": "Región del Biobío"
+    },
+    {
+      "id": "araucania",
+      "short_name": "La Araucanía",
+      "name": "Región de La Araucanía"
+    },
+    {
+      "id": "los-rios",
+      "short_name": "Los Ríos",
+      "name": "Región de Los Ríos"
+    },
+    {
+      "id": "los-lagos",
+      "short_name": "Los Lagos",
+      "name": "Región de Los Lagos"
+    },
+    {
+      "id": "aysen",
+      "short_name": "Aysén",
+      "name": "Región de Aysén"
+    },
+    {
+      "id": "magallanes",
+      "short_name": "Magallanes y de la Antártica Chilena",
+      "name": "Región de Magallanes y de la Antártica Chilena"
+    }
+  ]
+}

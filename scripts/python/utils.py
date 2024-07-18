@@ -54,7 +54,7 @@ def extract_status_and_line(row: list) -> list[str]:
 
 
 def normalize_text(string: str) -> str:
-    return string.replace("\n", " ").strip()
+    return str(string).replace("\n", " ").strip()
 
 
 def convert_to_int(value: str) -> int | None:
@@ -62,3 +62,10 @@ def convert_to_int(value: str) -> int | None:
         return int(re.sub(r"\D", "", value))
     except ValueError:
         return None
+
+
+def find_id_in_data(id: int, data: list) -> bool:
+    for entry in data:
+        if id == entry["id"]:
+            return True
+    return False

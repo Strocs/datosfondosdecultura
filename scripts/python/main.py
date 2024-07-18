@@ -3,16 +3,28 @@ import pymupdf
 import io
 import os
 import requests
-from lib.db_connection import DBConnection
+from lib.db_manager import DBManager
 from utils import *
 
 current_year = 2024
 
-db = DBConnection(use_json=True)
+db = DBManager(use_json=True)
 db.connect()
 
-links_path = os.path.join(db.path, "links", f"{current_year}.json")
+links_path = os.path.join(db._path, f"{current_year}.json")
 
+
+# args[1] -> <year>: search for year file in db/links
+# args[2] -> <file>: "types", "lines", "projects" -> if none -> all: fetch data from current pdf links and append if new value does'nt exist in db file
+# flag -> --update: compare by id all attributes, update if any attribute is changed and if new value not null
+
+# 1. get file and/or year from args
+# 2. connect to db
+# 3. get links from db
+#   - from local json
+#   - from sql db
+# 4. process data
+#   - evaluate what is saved on db. ex: if args.files == 'all', then three db will be appended with data
 
 with open(links_path, "r", encoding="utf-8") as pdf_urls_file:
     pdf_data = json.load(pdf_urls_file)
@@ -54,7 +66,7 @@ with open(links_path, "r", encoding="utf-8") as pdf_urls_file:
                                 [status, line] = extract_status_and_line(table[0])
 
                                 # Save in main scope status and project line
-                                current_project_line = db.find_line(line)
+                                current_project_line = db.find(line, "lines")
                                 # current_project_line = {
                                 #     "id": format_id(line),
                                 #     "name": line,
@@ -69,14 +81,14 @@ with open(links_path, "r", encoding="utf-8") as pdf_urls_file:
                             except ValueError:
                                 [region, folio, modality, title, owner, amount] = row
 
-                            db.save_data(
+                            new_project = (
                                 {
                                     "id": convert_to_int(folio),
-                                    "region": db.find_region(region),
+                                    "region": db.find(region, "regions"),
                                     "year": project_year,
                                     "folio": convert_to_int(folio),
                                     "line": {
-                                        **current_project_line,
+                                        **current_project_line,  # type: ignore
                                         "modality": normalize_text(modality),
                                     },
                                     "projectName": normalize_text(title),
@@ -85,6 +97,11 @@ with open(links_path, "r", encoding="utf-8") as pdf_urls_file:
                                     "status": current_status,
                                     "type": type,
                                 },
-                                "projects.json",
                             )
+
+                            # db.save_data(
+                            #     "projects",
+                            #     new_project
+                            # )
+
             print(f"Finished pdf: {pdf_url} - {project_type}")
