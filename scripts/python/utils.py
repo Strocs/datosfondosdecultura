@@ -95,20 +95,40 @@ def set_new_data(new_data, db_data, update=True):
 
 def save_pdf_on_local(pdf, name):
     try:
-        path = os.path.abspath(os.path.join(os.getcwd(), "tmp", "db"))
-        if not os.path.exists(path):
-            os.makedirs(path)
+        print(f"...downloading {name}")
+
+        path = base_path("tmp", "db")
+
         file_path = os.path.join(path, f"{name}")
+
         with open(file_path, "wb") as f:
             f.write(pdf)
+        print(f"PDF saved successfully: {file_path}")
+        return file_path
     except Exception as e:
         print(f"Error saving PDF: {e}")
 
 
 def get_pdfs_data_from_local():
-    path = os.path.abspath(os.path.join(os.getcwd(), "tmp", "db"))
+    path = base_path("tmp", "db")
     file_path = os.path.join(path, "pdf.json")
 
-    with open(file_path, "r", encoding="utf-8") as local_pdf_file:
-        local_pdf_data = json.load(local_pdf_file)
-    return local_pdf_data
+    try:
+        with open(file_path, "r", encoding="utf-8") as local_pdf_file:
+            local_pdf_data = json.load(local_pdf_file)
+        return local_pdf_data
+    except FileNotFoundError:
+        print(
+            "Local folder not found, you need to download data first using: `npm run pdf:download`"
+        )
+        return {}
+
+
+def base_path(*args, file=None):
+    path = os.path.abspath(os.path.join(os.getcwd(), *args))
+    if not os.path.exists(path):
+        os.makedirs(path)
+    if file != None:
+        path = os.path.join(path, file)
+
+    return path
