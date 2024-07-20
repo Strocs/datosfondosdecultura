@@ -1,7 +1,7 @@
 {
   "id": "regions",
-  "lastUpdate": "",
-  "length": "",
+  "lastUpdate": "2024-07-19 20:11:30.517037",
+  "length": 16,
   "data": [
     {
       "id": "arica-y-parinacota",
@@ -41,6 +41,7 @@
     {
       "id": "ohiggins",
       "short_name": "O'higgins",
+      "alt_name": "Del L. G. B. O´Higgins",
       "name": "Región del Libertador General Bernardo O'Higgins"
     },
     {

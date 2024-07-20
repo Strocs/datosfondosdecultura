@@ -26,6 +26,18 @@ class LocalDBManager:
         file_path = os.path.join(self.__path, f"{file}.json")
 
         try:
+            if os.path.getsize(file_path) == 0:
+                with open(file_path, "w", encoding="utf-8") as db_file:
+                    template = {
+                        "id": file,
+                        "lastUpdate": str(datetime.now()),
+                        "length": 0,
+                        "data": [],
+                    }
+
+                    json.dump(template, db_file, ensure_ascii=False)
+                return template
+
             with open(file_path, "r", encoding="utf-8") as db_file:
                 db_data = json.load(db_file)
             return db_data
@@ -47,9 +59,10 @@ class LocalDBManager:
     def insert(self, file: str, data: list):
         file_path = os.path.join(self.__path, f"{file}.json")
         try:
-            with open(file_path, "w", encoding="utf-8") as db_file:
-                db_data = json.load(db_file)
+            db_data = self.get(file)
 
+            with open(file_path, "w", encoding="utf-8") as db_file:
+                # TODO: throw error 'not readable'
                 new_data = {
                     **db_data,
                     "lastUpdate": str(datetime.now()),
@@ -63,10 +76,16 @@ class LocalDBManager:
             print(f"Error saving data on {file} database: {str(e)}")
 
     def get_all_data(self):
+        lines = self.get("lines")
+        projects = self.get("projects")
+        regions = self.get("regions")
+        types = self.get("types")
+        pdf = self.get("pdf")
+
         return {
-            "lines": self.get("lines")["data"],
-            "projects": self.get("projects")["data"],
-            "regions": self.get("regions")["data"],
-            "types": self.get("types")["data"],
-            "pdf": self.get("pdf")["data"],
+            "lines": lines["data"],
+            "projects": projects["data"],
+            "regions": regions["data"],
+            "types": types["data"],
+            "pdf": pdf["data"],
         }

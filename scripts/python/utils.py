@@ -1,6 +1,8 @@
+import json
 import re
 import requests
 from unidecode import unidecode
+import os
 
 
 def format_id(string: str) -> str:
@@ -27,21 +29,25 @@ def convert_to_int(value: str) -> int | None:
         return None
 
 
-def find_id_in_data(id: int | str, data: list) -> list[bool | int]:
-    for index, entry in data:
+def find_id_in_data(id: int | str, data: list) -> list[bool | int | None]:
+    for index, entry in enumerate(data):
         if id == entry["id"]:
             return [True, index]
-    return [False]
+    return [False, None]
 
 
-def fetch(url):
-    response = requests.get(url)
-    response.raise_for_status()
-    return response.content
+def fetch(url, local=False):
+    if not local:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.content
+    else:
+
+        with open(url, "rb") as local_pdf_file:
+            return local_pdf_file.read()
 
 
 def find_obj_in_list(query: str, list: list | None):
-
     if list is None:
         return None
 
@@ -51,7 +57,8 @@ def find_obj_in_list(query: str, list: list | None):
             for key, value in entry.items()
         ):
             return entry
-    print(f"No match was found in {list} with query: {query}")
+
+    print(f"No match was found with query: {query}")
 
 
 def get_data_by_year(year, list):
@@ -73,11 +80,35 @@ def add_region_to_projects(projects, regions):
 
 
 def set_new_data(new_data, db_data, update=True):
-    for data in new_data:
-        [exist, index] = find_id_in_data(data["id"], db_data)
-        if exist:
-            if update:
-                db_data[index] = data
-        else:
-            db_data.append(data)
+    if len(db_data) > 0:
+        for data in new_data:
+            [exist, index] = find_id_in_data(data["id"], db_data)
+            if exist:
+                if update:
+                    db_data[index] = data
+            else:
+                db_data.append(data)
+    else:
+        db_data = new_data
     return db_data
+
+
+def save_pdf_on_local(pdf, name):
+    try:
+        path = os.path.abspath(os.path.join(os.getcwd(), "tmp", "db"))
+        if not os.path.exists(path):
+            os.makedirs(path)
+        file_path = os.path.join(path, f"{name}")
+        with open(file_path, "wb") as f:
+            f.write(pdf)
+    except Exception as e:
+        print(f"Error saving PDF: {e}")
+
+
+def get_pdfs_data_from_local():
+    path = os.path.abspath(os.path.join(os.getcwd(), "tmp", "db"))
+    file_path = os.path.join(path, "pdf.json")
+
+    with open(file_path, "r", encoding="utf-8") as local_pdf_file:
+        local_pdf_data = json.load(local_pdf_file)
+    return local_pdf_data

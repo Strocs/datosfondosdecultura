@@ -19,15 +19,15 @@ class PDFParser:
         self.__pdf = None
         self.__file = file
         self.__current_line = {"id": "", "name": ""}
-
-    def __call__(self):
         self.__extract()
         self.__parse()
+
+    def results(self):
         return {
-            "line": self.line,
+            "lines": self.line,
             "status": self.status,
             "projects": self.projects,
-            "type": self.type,
+            "types": self.type,
             "year": self.year,
         }
 
@@ -64,7 +64,6 @@ class PDFParser:
 
                             if status != self.status:
                                 self.__set_status(status)
-
                             continue
 
                         # avoid first column if row have 7 columns
@@ -87,7 +86,7 @@ class PDFParser:
                                 "projectOwner": normalize_text(owner),
                                 "amountAssigned": convert_to_int(amount),
                                 "status": self.status,
-                                "type": self.type,
+                                "type": self.type[0],
                             },
                         )
 
