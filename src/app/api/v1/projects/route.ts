@@ -12,8 +12,8 @@ export async function GET(request: Request) {
     const totalProjects = projects.length;
     const paginatedProjects = projects.data.slice(offset, offset + limit);
 
-    const next = `http://localhost:3000/api/v1/projects?page=${[page + 1]}`
-    const prev = `http://localhost:3000/api/v1/projects?page=${[page - 1]}`
+    const next = `https://fondart-app.vercel.app/api/v1/projects?page=${[page + 1]}`
+    const prev = `https://fondart-app.vercel.app/api/v1/projects?page=${[page - 1]}`
 
     const resp: {
       total: number, page: number, limit: number, data: any[], next?: string, prev?: string
