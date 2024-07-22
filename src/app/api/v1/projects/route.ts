@@ -1,5 +1,29 @@
 import { fetchLocal } from '@/lib/db';
 
+interface Projects {
+  "id": number,
+  "region": {
+    "id": string,
+    "short_name": string,
+    "name": string
+  },
+  "year": number,
+  "folio": number,
+  "line": {
+    "id": string,
+    "name": string,
+    "modality": string
+  },
+  "projectName": string,
+  "projectOwner": string,
+  "amountAssigned": number,
+  "status": string,
+  "type": {
+    "id": string,
+    "name": string
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -12,11 +36,12 @@ export async function GET(request: Request) {
     const totalProjects = projects.length;
     const paginatedProjects = projects.data.slice(offset, offset + limit);
 
-    const next = `https://fondart-app.vercel.app/api/v1/projects?page=${[page + 1]}`
-    const prev = `https://fondart-app.vercel.app/api/v1/projects?page=${[page - 1]}`
+    const baseUrl = request.url.split('?')[0];
+    const next = `${baseUrl}?page=${page + 1}&limit=${limit}`
+    const prev = `${baseUrl}?page=${page - 1}&limit=${limit}`
 
     const resp: {
-      total: number, page: number, limit: number, data: any[], next?: string, prev?: string
+      total: number, page: number, limit: number, data: Projects, next?: string, prev?: string
     } = { total: totalProjects, page, limit, data: paginatedProjects, next }
 
     if (page > 1) resp['prev'] = prev;
