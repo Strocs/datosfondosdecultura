@@ -7,8 +7,9 @@ function createFilePath(fileName: string): string {
 
 }
 
-export async function fetchLocal(fileName: string) {
+export async function fetchLocal<T>(fileName: string) {
   const filePath = createFilePath(fileName);
   const jsonData = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(jsonData);
+  return JSON.parse(jsonData) as T;
 }
+
