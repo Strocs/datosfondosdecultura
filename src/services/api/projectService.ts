@@ -2,6 +2,11 @@ import { DB, Project, Region } from '@/types/projects';
 import fs from 'fs';
 import path from 'path';
 
+type GetProjects = (filters?: { region?: string, line?: string, type?: string }) => Promise<{
+  projects: Project[],
+  length: number
+  matchedRegion?: Region
+}>
 
 async function localFetcher<T>(fileName: string) {
   const filePath = getDBLocation(fileName);
@@ -9,14 +14,14 @@ async function localFetcher<T>(fileName: string) {
   return JSON.parse(jsonData) as T;
 }
 
-export async function getProjects(filters: { region?: string, line?: string, type?: string }): Promise<{ projects: Project[] } | { projects: Project[], matchedRegion: Region }> {
+export const getProjects: GetProjects = async (filters) => {
   const projects = await localFetcher<DB<Project[]>>('projects');
 
-  if (filters.region) {
+  if (filters?.region) {
     const { filteredProjects, matchedRegion } = await getProjectsByRegion(projects.data, filters.region)
-    return { projects: filteredProjects, matchedRegion }
+    return { projects: filteredProjects, matchedRegion, length: filteredProjects.length }
   }
-  return { projects: projects.data }
+  return { projects: projects.data, length: projects.length }
 }
 
 
