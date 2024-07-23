@@ -18,18 +18,20 @@ export const getProjects: GetProjects = async (filters) => {
   const projects = await localFetcher<DB<Project[]>>('projects');
 
   if (filters?.region) {
-    const { filteredProjects, matchedRegion } = await getProjectsByRegion(projects.data, filters.region)
+    const { filteredProjects, matchedRegion } = await findRegion(projects.data, filters.region)
     return { projects: filteredProjects, matchedRegion, length: filteredProjects.length }
   }
   return { projects: projects.data, length: projects.length }
 }
 
 
-async function getProjectsByRegion(projects: Project[], regionSearched: string) {
+async function findRegion(projects: Project[], regionSearched: string) {
   const { data: regions } = await localFetcher<DB<Region[]>>('regions')
   const matchedRegion = regions.filter(region => {
     const values = Object.values(region)
-    if (values.includes(regionSearched)) return region
+    for (const value of values) {
+      if (value.toLowerCase().includes(regionSearched.toLowerCase())) return region
+    }
   })[0]
 
   const filteredProjects = projects.filter(project => project.region.id === matchedRegion.id)

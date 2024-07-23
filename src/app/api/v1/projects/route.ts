@@ -34,8 +34,13 @@ export async function GET(request: Request) {
     );
 
   } catch (error) {
+    // TODO: make a service for errors type
+    let message
+    if (error instanceof Error) message = error.message
+    else message = String(error)
+
     return new Response(
-      JSON.stringify({ error }),
+      JSON.stringify({ error: message }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
