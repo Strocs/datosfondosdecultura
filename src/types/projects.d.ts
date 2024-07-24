@@ -36,11 +36,14 @@ export interface Region {
   name: string
 }
 
-export interface ProjectResponse {
-  length: number,
-  page: number,
-  limit: number,
-  data: Project[],
-  next?: string,
-  prev?: string
+export interface APIResponse<T> {
+  data: T,
+  pagination?: {
+    total: number
+    items_per_page: number,
+    current_page: number,
+    total_pages: number
+    next_url: string | null,
+    prev_url: string | null
+  }
 }
