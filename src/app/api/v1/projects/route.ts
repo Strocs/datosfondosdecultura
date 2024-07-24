@@ -1,17 +1,17 @@
 import { getProjects } from '@/services/api/projectService';
-import { ProjectResponse } from '@/types/projects';
-import { getPaginatedData } from '@/utils/getPaginatedData';
+import { APIResponse, Project } from '@/types/projects';
+import { getPaginatedData } from '@/utils/api/getPaginatedData';
+import { parseQueryParams } from '@/utils/api/parseQueryParams';
 
 
 export async function GET(request: Request) {
   try {
     const { searchParams, origin, pathname } = new URL(request.url);
 
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
-    const region = searchParams.get('region') || '';
+    const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
 
     if (region) {
+      // TODO: paginate data if have more than 20 projects
       const { projects, length, matchedRegion } = await getProjects({ region })
       return new Response(JSON.stringify({ length, regionName: matchedRegion?.name, projects }), { status: 200, headers: { 'Content-Type': 'application/json' } })
     }
@@ -21,12 +21,15 @@ export async function GET(request: Request) {
     const { projects, length } = await getProjects();
     const paginatedData = getPaginatedData(projects, page, limit)
 
-    const next = `${origin + pathname}?page=${page + 1}&limit=${limit}`
-    const prev = `${origin + pathname}?page=${page - 1}&limit=${limit}`
+    const next_url = `${origin + pathname}?page=${page + 1}&limit=${limit}`
+    const prev_url = `${origin + pathname}?page=${page - 1}&limit=${limit}`
+    const total_pages = Math.ceil(length / limit)
 
-    const resp: ProjectResponse = { length, page, limit, data: paginatedData, next }
-
-    if (page > 1) resp['prev'] = prev;
+    const resp: APIResponse<Project[]> = {
+      data: paginatedData, pagination: {
+        total: length, items_per_page: limit, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
+      }
+    }
 
     return new Response(
       JSON.stringify(resp),
