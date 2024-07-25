@@ -4,6 +4,8 @@ import {
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -19,10 +21,10 @@ import {
   TableHead,
   TableBody,
   TableCell
-} from '../table'
+} from '../ui/table'
 
 import { useState } from 'react'
-import { Input } from '../input'
+import { Input } from '../ui/input'
 import { DataTablePagination } from './DataTablePagination'
 import { DataTableViewOptions } from './DataTableViewOptions'
 
@@ -35,6 +37,7 @@ export function DataTable<TData, TValue> ({
   columns,
   data
 }: DataTableProps<TData, TValue>) {
+  const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
@@ -45,6 +48,13 @@ export function DataTable<TData, TValue> ({
   const table = useReactTable({
     data,
     columns,
+    enableRowSelection: true,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection
+    },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
@@ -52,15 +62,13 @@ export function DataTable<TData, TValue> ({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility
-    }
+    onRowSelectionChange: setRowSelection,
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues()
   })
 
   return (
-    <>
+    <section className='py-8'>
       <div className='flex items-center py-4'>
         <Input
           placeholder='Buscar proyecto'
@@ -70,12 +78,12 @@ export function DataTable<TData, TValue> ({
           onChange={event =>
             table.getColumn('projectName')?.setFilterValue(event.target.value)
           }
-          className='max-w-sm rounded-xl'
+          className='max-w-sm'
         />
 
         <DataTableViewOptions table={table} />
       </div>
-      <div className='rounded-xl border shadow-md mb-4'>
+      <div className='border shadow-md mb-4 rounded-xl'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map(headerGroup => (
@@ -101,7 +109,6 @@ export function DataTable<TData, TValue> ({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  className='hover:bg-gray-100 transition-colors duration-200 ease-in-out dark:hover:bg-gray-900'
                 >
                   {row.getVisibleCells().map(cell => (
                     <TableCell key={cell.id}>
@@ -127,6 +134,6 @@ export function DataTable<TData, TValue> ({
         </Table>
       </div>
       <DataTablePagination table={table} />
-    </>
+    </section>
   )
 }

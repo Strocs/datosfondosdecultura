@@ -1,4 +1,5 @@
-import { DataTable } from '@/components/ui/data-table/DataTable'
+import { ModeToggle } from '@/components/ModeToggle'
+import { DataTable } from '@/components/data-table/DataTable'
 import { columns } from '@/components/data-table/columns'
 import { APIResponse, Project } from '@/types/projects'
 
@@ -12,7 +13,16 @@ export default async function Home () {
   const { data: projects }: APIResponse<Project[]> = await res.json()
 
   return (
-    <main className='w-full p-16 mx-auto'>
+    <main className='container mx-auto border my-16 py-6 rounded-xl'>
+      <header className='flex justify-between'>
+        <div>
+          <h2 className='font-bold text-2xl'>Lista de Proyectos</h2>
+          <p className='text-muted-foreground'>
+            Fondart Regional y Nacional - Año 2024
+          </p>
+        </div>
+        <ModeToggle />
+      </header>
       <DataTable columns={columns} data={projects} />
     </main>
   )

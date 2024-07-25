@@ -3,7 +3,7 @@
 import { Project } from '@/types/projects'
 import { formatAmount } from '@/utils/formatAmount'
 import { ColumnDef } from '@tanstack/react-table'
-import { DataTableColumnHeader } from '../ui/data-table/DataTableColumnHeader'
+import { DataTableColumnHeader } from './DataTableColumnHeader'
 
 export const columns: ColumnDef<Project>[] = [
   {
