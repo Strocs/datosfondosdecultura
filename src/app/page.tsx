@@ -4,12 +4,19 @@ import { columns } from '@/components/data-table/columns'
 import { APIResponse, Project } from '@/types/projects'
 
 export default async function Home () {
-  const res = await fetch(
-    'https://fondart-app.vercel.app/api/v1/projects?limit=1570',
-    {
-      cache: 'force-cache'
-    }
-  )
+  const env = process.env.NODE_ENV
+  let origin
+
+  if (env === 'development') {
+    origin = 'http://localhost:3000'
+  } else {
+    origin = 'https://fondart-app.vercel.app'
+  }
+
+  const res = await fetch(`${origin}/api/v1/projects?limit=1570`, {
+    cache: 'force-cache'
+  })
+
   const { data: projects }: APIResponse<Project[]> = await res.json()
 
   return (
