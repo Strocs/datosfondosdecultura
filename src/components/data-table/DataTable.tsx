@@ -24,9 +24,8 @@ import {
 } from '../ui/table'
 
 import { useState } from 'react'
-import { Input } from '../ui/input'
 import { DataTablePagination } from './DataTablePagination'
-import { DataTableViewOptions } from './DataTableViewOptions'
+import { DataTableToolbar } from './DataTableToolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -48,41 +47,28 @@ export function DataTable<TData, TValue> ({
   const table = useReactTable({
     data,
     columns,
-    enableRowSelection: true,
     state: {
       sorting,
-      columnFilters,
       columnVisibility,
-      rowSelection
+      rowSelection,
+      columnFilters
     },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
-    getSortedRowModel: getSortedRowModel(),
-    onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
+    enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues()
   })
 
   return (
     <section className='py-8'>
-      <div className='flex items-center py-4'>
-        <Input
-          placeholder='Buscar proyecto'
-          value={
-            (table.getColumn('projectName')?.getFilterValue() as string) ?? ''
-          }
-          onChange={event =>
-            table.getColumn('projectName')?.setFilterValue(event.target.value)
-          }
-          className='max-w-sm'
-        />
-
-        <DataTableViewOptions table={table} />
-      </div>
+      <DataTableToolbar table={table} />
       <div className='border shadow-md mb-4 rounded-xl'>
         <Table>
           <TableHeader>

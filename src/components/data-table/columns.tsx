@@ -39,11 +39,15 @@ export const columns: ColumnDef<Project>[] = [
     )
   },
   {
+    id: 'region',
     accessorKey: 'region.name',
     meta: 'Región',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Región' />
-    )
+    ),
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    }
   },
   {
     accessorKey: 'type.name',
