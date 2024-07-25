@@ -10,67 +10,67 @@ import { DataTableFacetedFilter } from '@/components/data-table/DataTableFaceted
 
 const regions = [
   {
-    value: 'Región de Arica Y Parinacota',
+    value: 'Arica Y Parinacota',
     label: 'Arica'
   },
   {
-    value: 'Región de Tarapacá',
+    value: 'Tarapacá',
     label: 'Tarapacá'
   },
   {
-    value: 'Región de Atacama',
+    value: 'Atacama',
     label: 'Atacama'
   },
   {
-    value: 'Región de Antofagasta',
+    value: 'Antofagasta',
     label: 'Antofagasta'
   },
   {
-    value: 'Región de Coquimbo',
+    value: 'Coquimbo',
     label: 'Coquimbo'
   },
   {
-    value: 'Región de Valparaíso',
+    value: 'Valparaíso',
     label: 'Valparaíso'
   },
   {
-    value: 'Región Metropolitana de Santiago',
+    value: 'Metropolitana de Santiago',
     label: 'Santiago'
   },
   {
-    value: "Región del Libertador General Bernardo O'Higgins",
+    value: "O'higgins",
     label: "O'higgins"
   },
   {
-    value: 'Región del Maule',
+    value: 'Maule',
     label: 'Maule'
   },
   {
-    value: 'Región de Ñuble',
+    value: 'Ñuble',
     label: 'Ñuble'
   },
   {
-    value: 'Región del Biobío',
+    value: 'Biobío',
     label: 'Biobío'
   },
   {
-    value: 'Región de La Araucanía',
+    value: 'La Araucanía',
     label: 'Araucanía'
   },
   {
-    value: 'Región de Los Ríos',
+    value: 'Los Ríos',
     label: 'Los Ríos'
   },
   {
-    value: 'Región de Los Lagos',
+    value: 'Los Lagos',
     label: 'Los Lagos'
   },
   {
-    value: 'Región de Aysén',
+    value: 'Aysén',
     label: 'Aysén'
   },
   {
-    value: 'Región de Magallanes y de la Antártica Chilena',
+    value: 'Magallanes y de la Antártica Chilena',
     label: 'Magallanes'
   }
 ]

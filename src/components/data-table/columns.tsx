@@ -4,6 +4,8 @@ import { Project } from '@/types/projects'
 import { formatAmount } from '@/utils/formatAmount'
 import { ColumnDef } from '@tanstack/react-table'
 import { DataTableColumnHeader } from './DataTableColumnHeader'
+import { Badge } from '../ui/badge'
+import { cn } from '@/lib/utils'
 
 export const columns: ColumnDef<Project>[] = [
   {
@@ -40,7 +42,7 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     id: 'region',
-    accessorKey: 'region.name',
+    accessorKey: 'region.short_name',
     meta: 'Región',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Región' />
@@ -51,9 +53,9 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     accessorKey: 'type.name',
-    meta: 'Tipo de Fondo',
+    meta: 'Fondo',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Tipo de Fondo' />
+      <DataTableColumnHeader column={column} title='Fondo' />
     )
   },
   {
@@ -65,28 +67,45 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     accessorKey: 'line.modality',
-    meta: 'Modalidad / Submodalidad',
+    meta: 'Modalidad',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Modalidad / Submodalidad' />
+      <DataTableColumnHeader className='' column={column} title='Modalidad' />
     )
   },
   {
     accessorKey: 'status',
-    meta: 'Estatus',
+    meta: 'Estado',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Estatus' />
-    )
+      <DataTableColumnHeader column={column} title='Estado' />
+    ),
+    cell: ({ row }) => {
+      const status: string = row.getValue('status')
+
+      return (
+        <Badge
+          className={cn('text-nowrap text-secondary dark:text-primary', {
+            'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700':
+              status === 'Selección',
+            'bg-neutral-400 hover:bg-neutral-500 dark:bg-neutral-600 dark:hover:bg-neutral-700':
+              status === 'Lista de Espera'
+          })}
+        >
+          {status}
+        </Badge>
+      )
+    }
   },
   {
     accessorKey: 'amountAssigned',
-    meta: 'Monto Asignado',
+    meta: 'Monto',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Monto Asignado' />
+      <DataTableColumnHeader column={column} title='Monto' />
     ),
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue('amountAssigned'))
-      const formatted = formatAmount(amount)
+      if (!amount) return <div>-</div>
 
+      const formatted = formatAmount(amount)
       return <div>{formatted}</div>
     }
   }
