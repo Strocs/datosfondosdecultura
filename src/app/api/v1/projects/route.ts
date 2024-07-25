@@ -18,16 +18,17 @@ export async function GET(request: Request) {
 
     if (page < 1 || limit < 1) return new Response('Invalid query parameters', { status: 400 });
 
+
     const { projects, length } = await getProjects();
-    const paginatedData = getPaginatedData(projects, page, limit)
+    let paginatedData = getPaginatedData(projects, page, limit)
 
     const next_url = `${origin + pathname}?page=${page + 1}&limit=${limit}`
     const prev_url = `${origin + pathname}?page=${page - 1}&limit=${limit}`
-    const total_pages = Math.ceil(length / limit)
+    const total_pages = Math.ceil(length / limit) | 1
 
     const resp: APIResponse<Project[]> = {
       data: paginatedData, pagination: {
-        total: length, items_per_page: limit, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
+        total: length, items_per_page: limit ? limit : length, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
       }
     }
 

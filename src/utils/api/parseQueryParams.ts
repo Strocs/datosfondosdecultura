@@ -14,7 +14,7 @@ export function parseQueryParams(searchParams: URLSearchParams): QueryParams {
 
   return {
     page: parseInt(searchParams.get('page') || '1'),
-    limit: parseInt(searchParams.get('limit') || '20'),
+    limit: parseInt(searchParams.get('limit') || ''),
     region: searchParams.get('region') || '',
     type: searchParams.get('type') || '',
     line: searchParams.get('line') || '',
