@@ -86,7 +86,7 @@ export function DataTableToolbar<TData> ({
 
   return (
     <div className='flex items-center justify-between py-4'>
-      <div className='flex flex-1 items-center space-x-2'>
+      <div className='flex flex-1 flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-2'>
         <Input
           placeholder='Buscar proyecto'
           value={
@@ -97,24 +97,25 @@ export function DataTableToolbar<TData> ({
           }
           className='max-w-sm'
         />
-
-        {table.getColumn('status') && (
-          <DataTableFacetedFilter
-            column={table.getColumn('region')}
-            title='Región'
-            options={regions}
-          />
-        )}
-        {isFiltered && (
-          <Button
-            variant='ghost'
-            onClick={() => table.resetColumnFilters()}
-            className='h-8 px-2 lg:px-3'
-          >
-            Reset
-            <Cross2Icon className='ml-2 h-4 w-4' />
-          </Button>
-        )}
+        <div className='flex flex-1 items-center space-x-2'>
+          {table.getColumn('status') && (
+            <DataTableFacetedFilter
+              column={table.getColumn('region')}
+              title='Región'
+              options={regions}
+            />
+          )}
+          {isFiltered && (
+            <Button
+              variant='ghost'
+              onClick={() => table.resetColumnFilters()}
+              className='h-8 px-2 lg:px-3'
+            >
+              Reset
+              <Cross2Icon className='ml-2 h-4 w-4' />
+            </Button>
+          )}
+        </div>
       </div>
       <DataTableViewOptions table={table} />
     </div>

@@ -67,7 +67,7 @@ export function DataTable<TData, TValue> ({
   })
 
   return (
-    <section className='py-8'>
+    <section className='py-4'>
       <DataTableToolbar table={table} />
       <div className='border shadow-md mb-4 rounded-xl'>
         <Table>
