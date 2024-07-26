@@ -25,10 +25,10 @@ export function DataTablePagination<TData> ({
   return (
     <div className='flex flex-col md:flex-row items-center justify-between px-2 space-y-4 md:space-y-0'>
       {/* Selection count */}
-      <div className='flex-1 text-sm text-muted-foreground'>
+      {/* <div className='flex-1 text-sm text-muted-foreground'>
         {table.getFilteredSelectedRowModel().rows.length} de{' '}
         {table.getFilteredRowModel().rows.length} Proyecto(s) seleccionados.
-      </div>
+      </div> */}
       {/* Pagination Controls */}
       <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-center md:space-x-6 lg:space-x-8'>
         <div className='flex items-center space-x-2 flex-col md:flex-row space-y-2 md:space-y-0 justify-center'>

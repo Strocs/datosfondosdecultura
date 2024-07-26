@@ -1,7 +1,5 @@
 export interface DB<T> {
-  id: string
   lastUpdate: string
-  length: number
   data: T
 }
 
@@ -31,9 +29,9 @@ export interface Line {
 
 export interface Region {
   id: string,
-  short_name: string,
-  alt_name?: string
+  shortName: string,
   name: string
+  abbr?: string
 }
 
 export interface APIResponse<T> {

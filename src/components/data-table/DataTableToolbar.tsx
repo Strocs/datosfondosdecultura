@@ -10,7 +10,7 @@ import { DataTableFacetedFilter } from '@/components/data-table/DataTableFaceted
 
 const regions = [
   {
-    value: 'Arica Y Parinacota',
+    value: 'Arica y Parinacota',
     label: 'Arica'
   },
   {
@@ -38,7 +38,7 @@ const regions = [
     label: 'Santiago'
   },
   {
-    value: "O'higgins",
+    value: "Del Libertador Gral. Bernardo O'Higgins",
     label: "O'higgins"
   },
   {

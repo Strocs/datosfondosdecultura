@@ -42,7 +42,7 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     id: 'region',
-    accessorKey: 'region.short_name',
+    accessorKey: 'region.shortName',
     meta: 'Región',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Región' />
