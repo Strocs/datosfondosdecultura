@@ -1,8 +1,19 @@
-- [x] Clean (maybe refactor) save data on db/json
-- [x] Avoid duplicate types on json
-- [x] Fix lines processed data / Some lines have duplicates, ids are formatted wrong and some names are bad
-- [x] Fix format ids fn in python to return correct ids structures
-- [x] Add different scripts to parse and download pdf to work locally
-- [ ] Evaluate if its better use pdf2docx for parse pdf to extract tables
+## DB
+- [ ] Change region reference db
+- [ ] Update projects db with new region data
+- [ ] Get pdf links and process new type data
+- [ ] Update databases with new project, lines and type data
 
-- [ ] Create api with local db
+---
+
+## API
+- [ ] Validate data from DB with schemas
+- [ ] Create endpoints for reference data (region, type and line)
+
+--- 
+
+## APP
+- [ ] Create schema with Zod for data fetched
+- [ ] Fetch on client Region, Type and Lines datas from db to create filters 
+- [ ] Cache data on client side with Router Cache (Maybe create faceted filters on server)
+- [ ] Create (on server or client) faceted filters for Region, Type and Lines
