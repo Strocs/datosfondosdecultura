@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pdf:scrape": "node scripts/js/scrape.js",
+    "pdf:scrape": "node scripts/node/scrape.js",
     "pdf:parser": "py scripts/python/main.py",
     "pdf:download": "py scripts/python/download.py"
   },

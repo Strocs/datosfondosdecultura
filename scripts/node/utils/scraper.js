@@ -9,13 +9,7 @@ export async function scraper (url) {
 
     const year = new Date().getFullYear()
 
-    let data = {
-      year,
-      lastUpdate: new Date().toLocaleDateString(),
-      data: pdfLink
-    }
-
-    return { data: JSON.stringify(data), year }
+    return { year, data: pdfLink }
   } catch (error) {
     console.log('Error: ', error)
   }
