@@ -1,6 +1,6 @@
 from lib.local_db_manager import LocalDBManager
 from lib.pdf_parser import PDFParser
-from utils import *
+from lib.utils import *
 
 args_year = 2024
 args_update = True

@@ -1,7 +1,7 @@
 import io
 import pymupdf
 
-from utils import (
+from lib.utils import (
     convert_to_int,
     find_id_in_data,
     format_id,
@@ -75,18 +75,18 @@ class PDFParser:
                         self.__set_project(
                             {
                                 "id": convert_to_int(folio),
-                                "region": region,
-                                "year": self.year,
                                 "folio": convert_to_int(folio),
+                                "projectName": normalize_text(title),
+                                "projectOwner": normalize_text(owner),
+                                "type": self.type[0],
+                                "year": self.year,
+                                "region": region,
                                 "line": {
                                     **self.__current_line,
                                     "modality": normalize_text(modality),
                                 },
-                                "projectName": normalize_text(title),
-                                "projectOwner": normalize_text(owner),
-                                "amountAssigned": convert_to_int(amount),
                                 "status": self.status,
-                                "type": self.type[0],
+                                "amountAssigned": convert_to_int(amount),
                             },
                         )
 

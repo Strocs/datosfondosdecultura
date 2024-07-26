@@ -1,5 +1,5 @@
 from lib.local_db_manager import LocalDBManager
-from utils import *
+from lib.utils import *
 import json
 
 # TODO: verify if files already exists

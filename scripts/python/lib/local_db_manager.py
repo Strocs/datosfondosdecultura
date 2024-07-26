@@ -2,8 +2,6 @@ from datetime import datetime
 import json
 import os
 
-from utils import normalize_text
-
 
 class LocalDBManager:
     def __init__(self):
@@ -21,7 +19,7 @@ class LocalDBManager:
     def get(self, file: str):
         if file not in self.__data_db_names:
             print(f"{file} is not a valid database name.")
-            return {"id": file, "lastUpdate": None, "length": 0, "data": []}
+            return {"lastUpdate": None, "data": []}
 
         file_path = os.path.join(self.__path, f"{file}.json")
 
@@ -29,9 +27,7 @@ class LocalDBManager:
             if os.path.getsize(file_path) == 0:
                 with open(file_path, "w", encoding="utf-8") as db_file:
                     template = {
-                        "id": file,
                         "lastUpdate": str(datetime.now()),
-                        "length": 0,
                         "data": [],
                     }
 
@@ -45,9 +41,7 @@ class LocalDBManager:
             # if file not found create one with basic template
             with open(file_path, "w", encoding="utf-8") as db_file:
                 template = {
-                    "id": file,
                     "lastUpdate": str(datetime.now()),
-                    "length": 0,
                     "data": [],
                 }
                 json.dump(template, db_file, ensure_ascii=False)
@@ -59,14 +53,11 @@ class LocalDBManager:
     def insert(self, file: str, data: list):
         file_path = os.path.join(self.__path, f"{file}.json")
         try:
-            db_data = self.get(file)
 
             with open(file_path, "w", encoding="utf-8") as db_file:
                 # TODO: throw error 'not readable'
                 new_data = {
-                    **db_data,
                     "lastUpdate": str(datetime.now()),
-                    "length": len(data),
                     "data": data,
                 }
 

@@ -2,85 +2,89 @@
   "lastUpdate": "2024-07-19 20:11:30.517037",
   "data": [
     {
-      "id": "arica-y-parinacota",
-      "short_name": "Arica y Parinacota",
-      "name": "Región de Arica y Parinacota"
+      "id": "CL-AP",
+      "name": "Región de Arica y Parinacota",
+      "shortName": "Arica y Parinacota",
+      "abbr": "Arica"
     },
     {
-      "id": "tarapaca",
-      "short_name": "Tarapacá",
-      "name": "Región de Tarapacá"
+      "id": "CL-TP",
+      "name": "Región de Tarapacá",
+      "shortName": "Tarapacá"
     },
     {
-      "id": "antofagasta",
-      "short_name": "Antofagasta",
-      "name": "Región de Antofagasta"
+      "id": "CL-AN",
+      "name": "Región de Antofagasta",
+      "shortName": "Antofagasta"
     },
     {
-      "id": "atacama",
-      "short_name": "Atacama",
-      "name": "Región de Atacama"
+      "id": "CL-AT",
+      "name": "Región de Atacama",
+      "shortName": "Atacama"
     },
     {
-      "id": "coquimbo",
-      "short_name": "Coquimbo",
-      "name": "Región de Coquimbo"
+      "id": "CL-CO",
+      "name": "Región de Coquimbo",
+      "shortName": "Coquimbo"
     },
     {
-      "id": "valparaiso",
-      "short_name": "Valparaíso",
-      "name": "Región de Valparaíso"
+      "id": "CL-VA",
+      "name": "Región de Valparaíso",
+      "shortName": "Valparaíso"
     },
     {
-      "id": "metropolitana",
-      "short_name": "Metropolitana de Santiago",
-      "name": "Región Metropolitana de Santiago"
+      "id": "CL-RM",
+      "name": "Región Metropolitana de Santiago",
+      "shortName": "Metropolitana de Santiago",
+      "abbr": "Santiago"
     },
     {
-      "id": "ohiggins",
-      "short_name": "O'higgins",
-      "alt_name": "Del L. G. B. O'Higgins",
-      "name": "Región del Libertador General Bernardo O'Higgins"
+      "id": "CL-LI",
+      "name": "Región del Libertador General Bernardo O'Higgins",
+      "shortName": "Del Libertador Gral. Bernardo O'Higgins",
+      "alt": "Del L. G. B. O´Higgins",
+      "abbr": "O'higgins"
     },
     {
-      "id": "maule",
-      "short_name": "Maule",
-      "name": "Región del Maule"
+      "id": "CL-ML",
+      "name": "Región del Maule",
+      "shortName": "Maule"
     },
     {
-      "id": "nuble",
-      "short_name": "Ñuble",
-      "name": "Región de Ñuble"
+      "id": "CL-NB",
+      "name": "Región de Ñuble",
+      "shortName": "Ñuble"
     },
     {
-      "id": "biobio",
-      "short_name": "Biobío",
-      "name": "Región del Biobío"
+      "id": "CL-BI",
+      "name": "Región del Biobío",
+      "shortName": "Biobío"
     },
     {
-      "id": "araucania",
-      "short_name": "La Araucanía",
-      "name": "Región de La Araucanía"
+      "id": "CL-AR",
+      "name": "Región de La Araucanía",
+      "shortName": "La Araucanía"
     },
     {
-      "id": "los-rios",
-      "short_name": "Los Ríos",
-      "name": "Región de Los Ríos"
+      "id": "CL-LR",
+      "name": "Región de Los Ríos",
+      "shortName": "Los Ríos"
     },
     {
-      "id": "los-lagos",
-      "short_name": "Los Lagos",
-      "name": "Región de Los Lagos"
+      "id": "CL-LL",
+      "name": "Región de Los Lagos",
+      "shortName": "Los Lagos"
     },
     {
-      "id": "aysen",
-      "short_name": "Aysén",
-      "name": "Región de Aysén"
+      "id": "CL-AI",
+      "name": "Región de Aysén",
+      "shortName": "Aysén"
     },
     {
-      "id": "magallanes",
-      "short_name": "Magallanes y de la Antártica Chilena",
-      "name": "Región de Magallanes y de la Antártica Chilena"
+      "id": "CL-MA",
+      "name": "Región de Magallanes y de la Antártica Chilena",
+      "shortName": "Magallanes y de la Antártica Chilena",
+      "abbr": "Magallanes"
     }
   ]
 }

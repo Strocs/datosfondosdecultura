@@ -6,10 +6,7 @@ import os
 
 
 def format_id(string: str) -> str:
-    processed_string = string.lower()
-    processed_string = unidecode(processed_string)
-    processed_string = re.sub(r"[^a-zA-Z0-9 ]", "", processed_string)
-    processed_string = re.sub(r"\s+", " ", processed_string).strip()
+    processed_string = flatten_text(string)
 
     if "linea" in processed_string or "inea" in processed_string:
         processed_string = processed_string.replace("linea", "")
@@ -20,6 +17,14 @@ def format_id(string: str) -> str:
 
 def normalize_text(string: str) -> str:
     return str(string).replace("\n", " ").strip()
+
+
+def flatten_text(string: str) -> str:
+    processed_string = string.lower()
+    processed_string = unidecode(processed_string)
+    processed_string = re.sub(r"[^a-zA-Z0-9 ]", "", processed_string)
+    processed_string = re.sub(r"\s+", " ", processed_string).strip()
+    return processed_string
 
 
 def convert_to_int(value: str) -> int | None:
@@ -53,7 +58,7 @@ def find_obj_in_list(query: str, list: list | None):
 
     for entry in list:
         if any(
-            normalize_text(query.lower()) in str(value).lower()
+            flatten_text(normalize_text(query)) in flatten_text(str(value))
             for key, value in entry.items()
         ):
             return entry
