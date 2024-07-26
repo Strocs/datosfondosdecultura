@@ -21,7 +21,7 @@ export const getProjects: GetProjects = async (filters) => {
     const { filteredProjects, matchedRegion } = await findRegion(projects.data, filters.region)
     return { projects: filteredProjects, matchedRegion, length: filteredProjects.length }
   }
-  return { projects: projects.data, length: projects.length }
+  return { projects: projects.data, length: projects.data.length }
 }
 
 
