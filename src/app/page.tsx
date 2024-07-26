@@ -2,17 +2,10 @@ import { ModeToggle } from '@/components/ModeToggle'
 import { DataTable } from '@/components/data-table/DataTable'
 import { columns } from '@/components/data-table/columns'
 import { APIResponse, Project } from '@/types/projects'
+import { getBaseUrl } from '@/utils/getBaseUrl'
 
 export default async function Home () {
-  const env = process.env.NODE_ENV
-
-  let origin
-  if (env === 'development') {
-    origin = 'http://localhost:3000'
-  } else {
-    origin = 'https://fondart-app.vercel.app'
-  }
-
+  let origin = getBaseUrl()
   const res = await fetch(`${origin}/api/v1/projects`, {
     cache: 'force-cache'
   })
