@@ -14,8 +14,7 @@
 
 ## APP
 - [ ] Create schema with Zod for data fetched
-- [ ] Fetch on client Region, Type and Lines datas from db to create filters 
-- [ ] Cache data on client side with Router Cache (Maybe create faceted filters on server)
+- [ ] Fetch and cache on server, Region, Type and Lines datas from db to create filters 
 - [ ] Create (on server or client) faceted filters for Region, Type and Lines
 
 - [ ] Create charts with global data on home
