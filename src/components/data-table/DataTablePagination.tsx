@@ -29,6 +29,10 @@ export function DataTablePagination<TData> ({
         {table.getFilteredSelectedRowModel().rows.length} de{' '}
         {table.getFilteredRowModel().rows.length} Proyecto(s) seleccionados.
       </div> */}
+      <div className='flex-1 text-sm text-muted-foreground'>
+        {table.getFilteredRowModel().rows.length} de{' '}
+        {table.getPreFilteredRowModel().rows.length} Proyecto(s).
+      </div>
       {/* Pagination Controls */}
       <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 justify-center md:space-x-6 lg:space-x-8'>
         <div className='flex items-center space-x-2 flex-col md:flex-row space-y-2 md:space-y-0 justify-center'>
