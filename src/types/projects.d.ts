@@ -45,3 +45,13 @@ export interface APIResponse<T> {
     prev_url: string | null
   }
 }
+
+export interface Filter {
+  column: string
+  title: string
+  options: {
+    label: string
+    value: string
+    icon?: ComponentType<{ className?: string }>
+  }[]
+}

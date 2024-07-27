@@ -1,5 +1,3 @@
-'use client'
-
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { Table } from '@tanstack/react-table'
 
@@ -7,77 +5,36 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from '@/components/data-table/DataTableViewOptions'
 import { DataTableFacetedFilter } from '@/components/data-table/DataTableFacetedFilter'
-
-const regions = [
-  {
-    value: 'Arica y Parinacota',
-    label: 'Arica'
-  },
-  {
-    value: 'Tarapacá',
-    label: 'Tarapacá'
-  },
-  {
-    value: 'Atacama',
-    label: 'Atacama'
-  },
-  {
-    value: 'Antofagasta',
-    label: 'Antofagasta'
-  },
-  {
-    value: 'Coquimbo',
-    label: 'Coquimbo'
-  },
-  {
-    value: 'Valparaíso',
-    label: 'Valparaíso'
-  },
-  {
-    value: 'Metropolitana de Santiago',
-    label: 'Santiago'
-  },
-  {
-    value: "Del Libertador Gral. Bernardo O'Higgins",
-    label: "O'higgins"
-  },
-  {
-    value: 'Maule',
-    label: 'Maule'
-  },
-  {
-    value: 'Ñuble',
-    label: 'Ñuble'
-  },
-  {
-    value: 'Biobío',
-    label: 'Biobío'
-  },
-  {
-    value: 'La Araucanía',
-    label: 'Araucanía'
-  },
-  {
-    value: 'Los Ríos',
-    label: 'Los Ríos'
-  },
-  {
-    value: 'Los Lagos',
-    label: 'Los Lagos'
-  },
-  {
-    value: 'Aysén',
-    label: 'Aysén'
-  },
-  {
-    value: 'Magallanes y de la Antártica Chilena',
-    label: 'Magallanes'
-  }
-]
+import { Filter } from '@/types/projects'
+import { line, region, status, type } from '@/data/filtersData'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
 }
+
+// TODO: get reference data to make filters from DB on server
+const filters: Filter[] = [
+  {
+    column: 'region',
+    title: 'Región',
+    options: region
+  },
+  {
+    column: 'type',
+    title: 'Fondo',
+    options: type
+  },
+  {
+    column: 'line',
+    title: 'Línea',
+    options: line
+  },
+  {
+    column: 'status',
+    title: 'Estado',
+    options: status
+  }
+]
 
 export function DataTableToolbar<TData> ({
   table
@@ -97,14 +54,19 @@ export function DataTableToolbar<TData> ({
           }
           className='max-w-sm'
         />
-        <div className='flex flex-1 items-center space-x-2'>
-          {table.getColumn('status') && (
-            <DataTableFacetedFilter
-              column={table.getColumn('region')}
-              title='Región'
-              options={regions}
-            />
-          )}
+        <div className='flex flex-1 items-center gap-2 flex-wrap'>
+          {filters.map(filter => {
+            return (
+              table.getColumn(filter.column) && (
+                <DataTableFacetedFilter
+                  key={filter.column}
+                  column={table.getColumn(filter.column)}
+                  title={filter.title}
+                  options={filter.options}
+                />
+              )
+            )
+          })}
           {isFiltered && (
             <Button
               variant='ghost'

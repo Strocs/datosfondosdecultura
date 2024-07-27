@@ -52,18 +52,26 @@ export const columns: ColumnDef<Project>[] = [
     }
   },
   {
+    id: 'type',
     accessorKey: 'type.name',
     meta: 'Fondo',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Fondo' />
-    )
+    ),
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    }
   },
   {
+    id: 'line',
     accessorKey: 'line.name',
     meta: 'Línea',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Línea' />
-    )
+    ),
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    }
   },
   {
     accessorKey: 'line.modality',
@@ -93,6 +101,9 @@ export const columns: ColumnDef<Project>[] = [
           {status}
         </Badge>
       )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
     }
   },
   {
