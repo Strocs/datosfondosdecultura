@@ -1,0 +1,44 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("TURSO_DATABASE_URL")
+}
+
+model Projects {
+  project_id      Int     @id
+  project_name    String
+  project_owner   String
+  fund            Funds   @relation(fields: [fund_id], references: [fund_id])
+  fund_id         String
+  project_year    Int
+  region          Regions @relation(fields: [region_id], references: [region_id])
+  region_id       String
+  line            Lines   @relation(fields: [line_id], references: [line_id])
+  line_id         String
+  modality        String?
+  status          String?
+  amount_assigned Int?
+}
+
+model Regions {
+  region_id   String     @id
+  region_name String
+  region_abbr String
+  projects    Projects[]
+}
+
+model Funds {
+  fund_id   String     @id
+  fund_name String
+  projects  Projects[]
+}
+
+model Lines {
+  line_id   String     @id
+  line_name String
+  projects  Projects[]
+}
