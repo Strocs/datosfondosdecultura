@@ -21,11 +21,11 @@ import {
   TableHead,
   TableBody,
   TableCell
-} from '../ui/table'
+} from '@/components/ui/table'
 
 import { useState } from 'react'
-import { DataTablePagination } from './DataTablePagination'
-import { DataTableToolbar } from './DataTableToolbar'
+import { DataTablePagination } from '@/components/data-table/DataTablePagination'
+import { DataTableToolbar } from '@/components/data-table/DataTableToolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
