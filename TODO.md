@@ -1,21 +1,95 @@
-## DB
-- [ ] Change region reference db
-- [ ] Update projects db with new region data
-- [ ] Get pdf links and process new type data
-- [ ] Update databases with new project, lines and type data
+# TODO
+
+### DB
+- [x] Change region reference db
+- [x] Update projects db with new region data
+- [x] Get pdf links and process new type data
+- [x] Update databases with new project, lines and type data
+- [ ] Scrape others found types pdfs for 2024, process, and add to DB
+- [ ] Migrate DB to a SQL Based or Redis
 
 ---
 
-## API
+### API
 - [ ] Validate data from DB with schemas
-- [ ] Create endpoints for reference data (region, type and line)
 
 --- 
 
-## APP
-- [ ] Create schema with Zod for data fetched
+### APP
+- [ ] Get Reference Data from DB *(Evaluate)*
+- [ ] Create schema with Zod for data and validate it
 - [ ] Fetch and cache on server, Region, Type and Lines datas from db to create filters 
-- [ ] Create (on server or client) faceted filters for Region, Type and Lines
+- [x] Create faceted filters for Region, Type and Lines
+- [ ] Create Landing Page
 
-- [ ] Create charts with global data on home
-- [ ] Create specific region, line and type pages with table and charts
+<br>
+<br>
+<br>
+
+# NOTES 
+
+### Estructura
+
+#### MVP (Sólo 2024)
+
+- ### **/**
+  - *[LineChart]* Gasto total por año
+  - *[LineChart]* Cantidad de proyectos seleccionados por año
+  - *[OverlappedLineChart]* Cantidad de proyectos por región en función al año.
+  - *[OverlappedLineChart]* Montos asignados por región en función al año. *(Permite visualizar cuánto a crecido una región respecto a otra(s) a lo largo de los años)*
+
+  > En los diagramas por año, permitir seleccionar rango de años. <br>
+  > En los diagramas por región permitir ocultar regiones.
+
+- ### **/proyectos**
+  - Tabla de proyectos
+    - Filtrar por región / tipo / línea / estado
+
+  - Generar dinámicamente charts asociados a los filtros
+    - General:
+      - *[Info]* Monto total
+      - *[Info]* Cantidad de Proyectos
+    - Fondo:
+      - *[StackedBarChart]* Cantidad de Proyectos
+      - *[StackedBarChart]* Monto total
+    - Región:
+      - *[StackedBarChart]* Cantidad de Proyectos
+      - *[StackedBarChart]* Monto total
+      - *[StackedBarChart]* Tipo de Fondo
+      - *[StackedMultipleBarChart]* Líneas *(Sólo si se filtra Fondos y/o línea)*
+    - Línea: *(Sólo si se filtra Fondos)*
+      - [StackedBarChart] Cantidad de Proyectos
+      - [StackedBarChart] Monto total
+
+  - Descargar informe
+
+- ### **/**
+  - *[LineChart]* Gasto total por año
+  - *[LineChart]* Cantidad de proyectos seleccionados por año
+  - *[OverlappedLineChart]* Cantidad de proyectos por región en función al año.
+  - *[OverlappedLineChart]* Montos asignados por región en función al año. *(Permite visualizar cuánto a crecido una región respecto a otra(s) a lo largo de los años)*
+
+  > En los diagramas por año, permitir seleccionar rango de años. <br>
+  > En los diagramas por región permitir ocultar regiones.
+
+- ### **/[year]/proyectos**
+  - Tabla de proyectos
+    - Filtrar por región / tipo / línea / estado
+
+  - Generar dinámicamente charts asociados a los filtros
+    - General:
+      - *[Info]* Monto total
+      - *[Info]* Cantidad de Proyectos
+    - Fondo:
+      - *[StackedBarChart]* Cantidad de Proyectos
+      - *[StackedBarChart]* Monto total
+    - Región:
+      - *[StackedBarChart]* Cantidad de Proyectos
+      - *[StackedBarChart]* Monto total
+      - *[StackedBarChart]* Tipo de Fondo
+      - *[StackedMultipleBarChart]* Líneas *(Sólo si se filtra Fondos y/o línea)*
+    - Línea: *(Sólo si se filtra Fondos)*
+      - [StackedBarChart] Cantidad de Proyectos
+      - [StackedBarChart] Monto total
+
+  - Descargar informe
