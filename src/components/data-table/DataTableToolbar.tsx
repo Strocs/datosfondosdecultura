@@ -42,8 +42,8 @@ export function DataTableToolbar<TData> ({
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-    <div className='flex items-center justify-between py-4'>
-      <div className='flex flex-1 flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-2'>
+    <div className='flex items-start justify-between py-4'>
+      <div className='flex flex-1 flex-col md:flex-row md:items-start space-y-2 md:space-y-0 md:space-x-2'>
         <Input
           placeholder='Buscar proyecto'
           value={
