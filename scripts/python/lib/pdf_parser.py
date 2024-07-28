@@ -14,11 +14,11 @@ class PDFParser:
         self.line = []
         self.status = ""
         self.projects = []
-        self.type = [{"id": format_id(type), "name": type}]
+        self.fund = [{"fund_id": format_id(type), "fund_name": type}]
         self.year = year
         self.__pdf = None
         self.__file = file
-        self.__current_line = {"id": "", "name": ""}
+        self.__current_line = {"line_id": "", "line_name": ""}
         self.__extract()
         self.__parse()
 
@@ -27,7 +27,7 @@ class PDFParser:
             "lines": self.line,
             "status": self.status,
             "projects": self.projects,
-            "types": self.type,
+            "funds": self.fund,
             "year": self.year,
         }
 
@@ -55,8 +55,8 @@ class PDFParser:
                             line_id = format_id(line)
 
                             self.__current_line = {
-                                "id": line_id,
-                                "name": line,
+                                "line_id": line_id,
+                                "line_name": line,
                             }
 
                             if not find_id_in_data(line_id, self.line)[0]:
@@ -74,19 +74,16 @@ class PDFParser:
 
                         self.__set_project(
                             {
-                                "id": convert_to_int(folio),
-                                "folio": convert_to_int(folio),
-                                "projectName": normalize_text(title),
-                                "projectOwner": normalize_text(owner),
-                                "type": self.type[0],
-                                "year": self.year,
-                                "region": region,
-                                "line": {
-                                    **self.__current_line,
-                                    "modality": normalize_text(modality),
-                                },
+                                "project_id": convert_to_int(folio),
+                                "project_name": normalize_text(title),
+                                "project_owner": normalize_text(owner),
+                                "fund_id": self.fund[0]["fund_id"],
+                                "project_year": self.year,
+                                "region_id": region,
+                                "line_id": self.__current_line["line_id"],
+                                "modality": normalize_text(modality),
                                 "status": self.status,
-                                "amountAssigned": convert_to_int(amount),
+                                "amount_assigned": convert_to_int(amount),
                             },
                         )
 

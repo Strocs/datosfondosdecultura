@@ -2,7 +2,7 @@ import { saveFile, scraper } from './utils/index.js'
 import path from 'path'
 
 const URL = 'https://www.fondosdecultura.cl/resultados/'
-const BASE_PATH = path.resolve('db')
+const BASE_PATH = path.resolve('db/json')
 
 try {
   const data = await scraper(URL)

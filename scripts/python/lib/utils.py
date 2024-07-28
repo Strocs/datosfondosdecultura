@@ -36,8 +36,10 @@ def convert_to_int(value: str) -> int | None:
 
 def find_id_in_data(id: int | str, data: list) -> list[bool | int | None]:
     for index, entry in enumerate(data):
-        if id == entry["id"]:
-            return [True, index]
+        id_key = find_id_key(entry)
+        if id_key:
+            if id == entry[id_key]:
+                return [True, index]
     return [False, None]
 
 
@@ -74,11 +76,17 @@ def get_data_by_year(year, list):
 
 def add_region_to_projects(projects, regions):
     updated_projects = []
+
     for project in projects:
+        region = find_obj_in_list(project["region_id"], regions)
+
+        if region is None:
+            region = {"region_id": None}
+
         updated_projects.append(
             {
                 **project,
-                "region": find_obj_in_list(project["region"], regions),
+                "region_id": region["region_id"],
             }
         )
     return updated_projects
@@ -87,15 +95,24 @@ def add_region_to_projects(projects, regions):
 def set_new_data(new_data, db_data, update=True):
     if len(db_data) > 0:
         for data in new_data:
-            [exist, index] = find_id_in_data(data["id"], db_data)
-            if exist:
-                if update:
-                    db_data[index] = data
-            else:
-                db_data.append(data)
+            id_key = find_id_key(data)
+            if id_key:
+                [exist, index] = find_id_in_data(data[id_key], db_data)
+                if exist:
+                    if update:
+                        db_data[index] = data
+                else:
+                    db_data.append(data)
     else:
         db_data = new_data
     return db_data
+
+
+def find_id_key(entry):
+    for key in entry.keys():
+        if key.endswith("_id"):
+            return key
+    return None
 
 
 def save_pdf_on_local(pdf, name):
@@ -131,8 +148,7 @@ def get_pdfs_data_from_local():
 
 def base_path(*args, file=None):
     path = os.path.abspath(os.path.join(os.getcwd(), *args))
-    if not os.path.exists(path):
-        os.makedirs(path)
+    os.makedirs(path, exist_ok=True)
     if file != None:
         path = os.path.join(path, file)
 

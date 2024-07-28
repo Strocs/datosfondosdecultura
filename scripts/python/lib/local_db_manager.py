@@ -2,26 +2,19 @@ from datetime import datetime
 import json
 import os
 
+from lib.utils import base_path
+
 
 class LocalDBManager:
     def __init__(self):
-        self.__path = ""
-        self.__data_db_names = ["lines", "projects", "regions", "types", "pdf"]
-        self.__connect()
-
-    def __connect(self):
-        db_path = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "..", "..", "..", "db")
-        )
-        os.makedirs(db_path, exist_ok=True)
-        self.__path = os.path.abspath(db_path)
+        self.__data_db_names = ["lines", "projects", "regions", "funds", "pdf"]
 
     def get(self, file: str):
         if file not in self.__data_db_names:
             print(f"{file} is not a valid database name.")
             return {"lastUpdate": None, "data": []}
 
-        file_path = os.path.join(self.__path, f"{file}.json")
+        file_path = base_path("db", "json", file=f"{file}.json")
 
         try:
             if os.path.getsize(file_path) == 0:
@@ -48,10 +41,10 @@ class LocalDBManager:
             return template
         except json.JSONDecodeError:
             print(f"Error decoding JSON file {file_path}.")
-            return {"id": file, "lastUpdate": None, "length": 0, "data": []}
+            return {"lastUpdate": None, "data": []}
 
     def insert(self, file: str, data: list):
-        file_path = os.path.join(self.__path, f"{file}.json")
+        file_path = base_path("db", "json", file=f"{file}.json")
         try:
 
             with open(file_path, "w", encoding="utf-8") as db_file:
@@ -70,13 +63,13 @@ class LocalDBManager:
         lines = self.get("lines")
         projects = self.get("projects")
         regions = self.get("regions")
-        types = self.get("types")
+        funds = self.get("funds")
         pdf = self.get("pdf")
 
         return {
             "lines": lines["data"],
             "projects": projects["data"],
             "regions": regions["data"],
-            "types": types["data"],
+            "funds": funds["data"],
             "pdf": pdf["data"],
         }
