@@ -10,7 +10,12 @@
     "lint": "next lint",
     "pdf:scrape": "node scripts/node/scrape.js",
     "pdf:parser": "py scripts/python/main.py",
-    "pdf:download": "py scripts/python/download.py"
+    "pdf:download": "py scripts/python/download.py",
+    "prisma:migrate": "dotenv -e .env.development -- pnpm dlx prisma migrate dev",
+    "prisma:seed": "dotenv -e .env.development -- pnpm dlx prisma db seed"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "5.17.0",
