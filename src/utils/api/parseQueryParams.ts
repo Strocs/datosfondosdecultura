@@ -1,4 +1,4 @@
-import { Project } from '@/types/projects';
+import { Projects } from '@prisma/client';
 
 interface QueryParams {
   page: number;
@@ -6,7 +6,7 @@ interface QueryParams {
   region: string;
   type: string;
   line: string;
-  sortBy: keyof Project | '';
+  sortBy: keyof Projects | '';
   order: 'asc' | 'desc';
 }
 
@@ -18,7 +18,7 @@ export function parseQueryParams(searchParams: URLSearchParams): QueryParams {
     region: searchParams.get('region') || '',
     type: searchParams.get('type') || '',
     line: searchParams.get('line') || '',
-    sortBy: searchParams.get('sortBy') as keyof Project || '',
+    sortBy: searchParams.get('sortBy') as keyof Projects || '',
     order: (searchParams.get('order') || 'asc') as 'asc' | 'desc',
   };
 }

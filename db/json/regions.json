@@ -1,0 +1,87 @@
+{
+  "lastUpdate": "2024-07-19 20:11:30.517037",
+  "data": [
+    {
+      "region_id": "AP",
+      "region_name": "Región de Arica y Parinacota",
+      "region_abbr": "Arica"
+    },
+    {
+      "region_id": "TP",
+      "region_name": "Región de Tarapacá",
+      "region_abbr": "Tarapacá"
+    },
+    {
+      "region_id": "AN",
+      "region_name": "Región de Antofagasta",
+      "region_abbr": "Antofagasta"
+    },
+    {
+      "region_id": "AT",
+      "region_name": "Región de Atacama",
+      "region_abbr": "Atacama"
+    },
+    {
+      "region_id": "CO",
+      "region_name": "Región de Coquimbo",
+      "region_abbr": "Coquimbo"
+    },
+    {
+      "region_id": "VA",
+      "region_name": "Región de Valparaíso",
+      "region_abbr": "Valparaíso"
+    },
+    {
+      "region_id": "RM",
+      "region_name": "Región Metropolitana de Santiago",
+      "region_abbr": "Santiago"
+    },
+    {
+      "region_id": "LI",
+      "region_name": "Región del Libertador General Bernardo O'Higgins",
+      "region_abbr": "O'higgins",
+      "region_alt1": "Del Libertador Gral. Bernardo O'Higgins",
+      "region_alt2": "Del L. G. B. O´Higgins"
+    },
+    {
+      "region_id": "ML",
+      "region_name": "Región del Maule",
+      "region_abbr": "Maule"
+    },
+    {
+      "region_id": "NB",
+      "region_name": "Región de Ñuble",
+      "region_abbr": "Ñuble"
+    },
+    {
+      "region_id": "BI",
+      "region_name": "Región del Biobío",
+      "region_abbr": "Biobío"
+    },
+    {
+      "region_id": "AR",
+      "region_name": "Región de La Araucanía",
+      "region_abbr": "La Araucanía"
+    },
+    {
+      "region_id": "LR",
+      "region_name": "Región de Los Ríos",
+      "region_abbr": "Los Ríos"
+    },
+    {
+      "region_id": "LL",
+      "region_name": "Región de Los Lagos",
+      "region_abbr": "Los Lagos"
+    },
+    {
+      "region_id": "AI",
+      "region_name": "Región de Aysén",
+      "region_abbr": "Aysén"
+    },
+    {
+      "region_id": "MA",
+      "region_name": "Región de Magallanes y de la Antártica Chilena",
+      "region_abbr": "Magallanes"
+    }
+  ]
+}

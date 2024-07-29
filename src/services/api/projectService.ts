@@ -1,46 +1,65 @@
-import { DB, Project, Region } from '@/types/projects';
-import fs from 'fs';
-import path from 'path';
+import { prismaLocal as prisma } from '@/lib/prisma';
 
-type GetProjects = (filters?: { region?: string, line?: string, type?: string }) => Promise<{
-  projects: Project[],
-  length: number
-  matchedRegion?: Region
-}>
-
-async function localFetcher<T>(fileName: string) {
-  const filePath = getDBLocation(fileName);
-  const jsonData = fs.readFileSync(filePath, 'utf-8');
-  return JSON.parse(jsonData) as T;
+const selector = {
+  project_id: true,
+  project_name: true,
+  project_owner: true,
+  region: {
+    select: {
+      region_name: true
+    }
+  },
+  fund: {
+    select: {
+      fund_name: true
+    }
+  },
+  project_year: true,
+  line: {
+    select: {
+      line_name: true
+    }
+  },
+  modality: true,
+  status: true,
+  amount_assigned: true,
 }
 
-export const getProjects: GetProjects = async (filters) => {
-  const projects = await localFetcher<DB<Project[]>>('projects');
+export const getProjects = async (filters?: { region?: string, line?: string, type?: string }) => {
+  const projects = await prisma.projects.findMany({
+    select: selector
+  })
+
+  const projectsLength = await prisma.projects.count()
 
   if (filters?.region) {
-    const { filteredProjects, matchedRegion } = await findRegion(projects.data, filters.region)
-    return { projects: filteredProjects, matchedRegion, length: filteredProjects.length }
-  }
-  return { projects: projects.data, length: projects.data.length }
-}
-
-
-async function findRegion(projects: Project[], regionSearched: string) {
-  const { data: regions } = await localFetcher<DB<Region[]>>('regions')
-  const matchedRegion = regions.filter(region => {
-    const values = Object.values(region)
-    for (const value of values) {
-      if (value.toLowerCase().includes(regionSearched.toLowerCase())) return region
+    const { projects, region_abbr, region_id, region_name } = await findRegion(filters.region)
+    return {
+      projects,
+      region: { region_id, region_name, region_abbr },
+      length: projects.length
     }
-  })[0]
+  }
 
-  const filteredProjects = projects.filter(project => project.region.id === matchedRegion.id)
-  return { filteredProjects, matchedRegion }
-
+  return { projects, length: projectsLength }
 }
 
 
-function getDBLocation(fileName: string): string {
-  return path.join(process.cwd(), `db/${fileName}.json`);
-
+async function findRegion(regionSearched: string) {
+  const region = await prisma.regions.findFirstOrThrow({
+    where: {
+      OR: [
+        { region_id: { contains: regionSearched } },
+        { region_name: { contains: regionSearched } },
+        { region_abbr: { contains: regionSearched } }
+      ]
+    },
+    select: {
+      region_id: true,
+      region_name: true,
+      region_abbr: true,
+      projects: { select: selector },
+    }
+  })
+  return region
 }

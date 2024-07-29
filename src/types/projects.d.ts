@@ -1,37 +1,21 @@
-export interface DB<T> {
+import { Regions } from "@prisma/client"
+
+export interface JSONDatabase<T> {
   lastUpdate: string
   data: T
 }
 
-export interface Project {
-  id: number,
-  region: Region,
-  year: number,
-  folio: number,
-  line: Line,
-  projectName: string,
-  projectOwner: string,
-  amountAssigned: number,
-  status: string,
-  type: Type
-}
+export type Project = Omit<Prisma.ProjectsGetPayload<{
+  include: {
+    fund: { select: { fund_name: true } },
+    region: { select: { region_name: true } },
+    line: { select: { line_name: true } },
+  }
+}>, 'fund_id' | 'region_id' | 'line_id'>;
 
-export interface Type {
-  id: string,
-  name: string
-}
-
-export interface Line {
-  id: string,
-  name: string,
-  modality: string
-}
-
-export interface Region {
-  id: string,
-  shortName: string,
-  name: string
-  abbr?: string
+export interface Region extends Regions {
+  region_alt1?: string
+  region_alt2?: string
 }
 
 export interface APIResponse<T> {

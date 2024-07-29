@@ -1,5 +1,5 @@
 import { getProjects } from '@/services/api/projectService';
-import { APIResponse, Project } from '@/types/projects';
+import { Project, APIResponse } from '@/types/projects';
 import { getPaginatedData } from '@/utils/api/getPaginatedData';
 import { parseQueryParams } from '@/utils/api/parseQueryParams';
 
@@ -10,17 +10,18 @@ export async function GET(request: Request) {
 
     const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
 
+
     if (region) {
       // TODO: paginate data if have more than 20 projects
-      const { projects, length, matchedRegion } = await getProjects({ region })
-      return new Response(JSON.stringify({ length, regionName: matchedRegion?.name, projects }), { status: 200, headers: { 'Content-Type': 'application/json' } })
+      const { projects, length, region: matchedRegion } = await getProjects({ region })
+      return new Response(JSON.stringify({ length, region: matchedRegion?.region_name, projects }), { status: 200, headers: { 'Content-Type': 'application/json' } })
     }
 
     if (page < 1 || limit < 1) return new Response('Invalid query parameters', { status: 400 });
 
 
     const { projects, length } = await getProjects();
-    let paginatedData = getPaginatedData(projects, page, limit)
+    let paginatedData = getPaginatedData<Project>(projects, page, limit)
 
     const next_url = `${origin + pathname}?page=${page + 1}&limit=${limit}`
     const prev_url = `${origin + pathname}?page=${page - 1}&limit=${limit}`

@@ -1,0 +1,41 @@
+{
+  "lastUpdate": "2024-07-28 18:18:12.433875",
+  "data": [
+    {
+      "line_id": "organizacion-de-muestras-ferias-encuentros-y-festivales",
+      "line_name": "Línea Organización De Muestras, Ferias, Encuentros Y Festivales"
+    },
+    {
+      "line_id": "cultura-de-los-pueblos-originarios",
+      "line_name": "Línea Cultura De Los Pueblos Originarios"
+    },
+    {
+      "line_id": "culturas-regionales",
+      "line_name": "Línea Culturas Regionales"
+    },
+    {
+      "line_id": "actividades-formativas",
+      "line_name": "Línea Actividades Formativas"
+    },
+    {
+      "line_id": "difusion",
+      "line_name": "Línea Difusión"
+    },
+    {
+      "line_id": "becas-chile-crea",
+      "line_name": "Línea Becas Chile Crea"
+    },
+    {
+      "line_id": "investigacion",
+      "line_name": "Línea Investigación"
+    },
+    {
+      "line_id": "creacion-artistica",
+      "line_name": "Línea Creación Artística"
+    },
+    {
+      "line_id": "infraestructura-cultural-recuperacion-de-espacios",
+      "line_name": "Línea Infraestructura Cultural: Recuperación De Espacios"
+    }
+  ]
+}
