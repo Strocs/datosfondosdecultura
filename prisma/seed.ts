@@ -1,14 +1,15 @@
+import { prismaLocal as prisma } from '@/lib/prisma'
 import { JSONDatabase, Region } from '@/types/projects'
-import { Funds, Lines, PrismaClient, Projects } from '@prisma/client'
+import { Funds, Lines, Projects } from '@prisma/client'
 import fs from 'fs'
 import path from 'path'
 
-const prisma = new PrismaClient()
 
 const BASE_PATH = path.resolve('db/json')
 
 async function main() {
   try {
+
     const { funds, lines, projects, regions } = await getDataToUpdate()
 
     if (!funds && !lines && !projects && !regions) {
@@ -28,7 +29,6 @@ async function main() {
         ${lines ? 'Lines' : ''} 
         ${projects ? 'Projects' : ''}`
     )
-
   } catch (error) {
     let message
     if (error instanceof Error) message = error.message
