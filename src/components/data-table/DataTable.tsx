@@ -26,22 +26,25 @@ import {
 import { useState } from 'react'
 import { DataTablePagination } from '@/components/data-table/DataTablePagination'
 import { DataTableToolbar } from '@/components/data-table/DataTableToolbar'
+import { Filter } from '@/types/projects'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  filters?: Filter[]
 }
 
 export function DataTable<TData, TValue> ({
   columns,
-  data
+  data,
+  filters
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
-    folio: false,
-    year: false
+    project_id: false,
+    project_year: false
   })
 
   const table = useReactTable({
@@ -68,7 +71,7 @@ export function DataTable<TData, TValue> ({
 
   return (
     <section className='py-4'>
-      <DataTableToolbar table={table} />
+      <DataTableToolbar table={table} filters={filters} />
       <div className='border shadow-md mb-4 rounded-xl'>
         <Table>
           <TableHeader>

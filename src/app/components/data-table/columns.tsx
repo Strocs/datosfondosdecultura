@@ -1,15 +1,15 @@
 'use client'
 
-import { Project } from '@/types/projects'
 import { formatAmount } from '@/utils/formatAmount'
 import { ColumnDef } from '@tanstack/react-table'
-import { DataTableColumnHeader } from './DataTableColumnHeader'
-import { Badge } from '../ui/badge'
+import { DataTableColumnHeader } from '../../../components/data-table/DataTableColumnHeader'
+import { Badge } from '../../../components/ui/badge'
 import { cn } from '@/lib/utils'
+import { Project } from '@/types/projects'
 
 export const columns: ColumnDef<Project>[] = [
   {
-    accessorKey: 'folio',
+    accessorKey: 'project_id',
     meta: 'Folio',
     enableSorting: false,
     header: ({ column }) => (
@@ -17,7 +17,7 @@ export const columns: ColumnDef<Project>[] = [
     )
   },
   {
-    accessorKey: 'year',
+    accessorKey: 'project_year',
     meta: 'Año',
     enableSorting: false,
     header: ({ column }) => (
@@ -25,7 +25,7 @@ export const columns: ColumnDef<Project>[] = [
     )
   },
   {
-    accessorKey: 'projectName',
+    accessorKey: 'project_name',
     meta: 'Nombre',
     enableSorting: false,
     header: ({ column }) => (
@@ -33,7 +33,7 @@ export const columns: ColumnDef<Project>[] = [
     )
   },
   {
-    accessorKey: 'projectOwner',
+    accessorKey: 'project_owner',
     meta: 'Responsable',
     enableSorting: false,
     header: ({ column }) => (
@@ -42,7 +42,7 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     id: 'region',
-    accessorKey: 'region.shortName',
+    accessorKey: 'region.region_name',
     meta: 'Región',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Región' />
@@ -52,8 +52,8 @@ export const columns: ColumnDef<Project>[] = [
     }
   },
   {
-    id: 'type',
-    accessorKey: 'type.name',
+    id: 'fund',
+    accessorKey: 'fund.fund_name',
     meta: 'Fondo',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Fondo' />
@@ -64,7 +64,7 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     id: 'line',
-    accessorKey: 'line.name',
+    accessorKey: 'line.line_name',
     meta: 'Línea',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Línea' />
@@ -74,7 +74,7 @@ export const columns: ColumnDef<Project>[] = [
     }
   },
   {
-    accessorKey: 'line.modality',
+    accessorKey: 'modality',
     meta: 'Modalidad',
     header: ({ column }) => (
       <DataTableColumnHeader className='' column={column} title='Modalidad' />
@@ -107,13 +107,13 @@ export const columns: ColumnDef<Project>[] = [
     }
   },
   {
-    accessorKey: 'amountAssigned',
+    accessorKey: 'amount_assigned',
     meta: 'Monto',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Monto' />
     ),
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('amountAssigned'))
+      const amount = parseFloat(row.getValue('amount_assigned'))
       if (!amount) return <div>-</div>
 
       const formatted = formatAmount(amount)
