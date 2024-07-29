@@ -6,19 +6,20 @@
 - [x] Get pdf links and process new type data
 - [x] Update databases with new project, lines and type data
 - [ ] Scrape others found types pdfs for 2024, process, and add to DB
-- [ ] Migrate DB to a SQL Based or Redis
+- [x] Migrate DB to any SQL Database (turso with libsql)
+- [ ] Implement a script to upload remote DB
 
 ---
 
 ### API
-- [ ] Validate data from DB with schemas
+- [x] Validate data from DB with schemas
 
 --- 
 
 ### APP
-- [ ] Get Reference Data from DB *(Evaluate)*
-- [ ] Create schema with Zod for data and validate it
-- [ ] Fetch and cache on server, Region, Type and Lines datas from db to create filters 
+- [x] Get Reference Data from DB *(Evaluate)*
+- [x] Implement schemas to validate data
+- [?] Fetch and cache on server, Region, Type and Lines datas from db to create filters 
 - [x] Create faceted filters for Region, Type and Lines
 - [ ] Create Landing Page
 
