@@ -1,32 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `Fund` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Line` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Project` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Region` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Fund";
-PRAGMA foreign_keys=on;
-
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Line";
-PRAGMA foreign_keys=on;
-
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Project";
-PRAGMA foreign_keys=on;
-
--- DropTable
-PRAGMA foreign_keys=off;
-DROP TABLE "Region";
-PRAGMA foreign_keys=on;
-
 -- CreateTable
 CREATE TABLE "Projects" (
     "project_id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -48,9 +19,7 @@ CREATE TABLE "Projects" (
 CREATE TABLE "Regions" (
     "region_id" TEXT NOT NULL PRIMARY KEY,
     "region_name" TEXT NOT NULL,
-    "region_shortname" TEXT NOT NULL,
-    "region_altname" TEXT,
-    "region_abbr" TEXT
+    "region_abbr" TEXT NOT NULL
 );
 
 -- CreateTable
