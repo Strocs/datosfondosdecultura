@@ -5,48 +5,50 @@ import { parseQueryParams } from '@/utils/api/parseQueryParams';
 
 
 export async function GET(request: Request) {
-  try {
-    const { searchParams, origin, pathname } = new URL(request.url);
+  return new Response(JSON.stringify({ message: 'API Unavailable: Work in progress', status: 501 }), { status: 501 })
 
-    const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
+  // try {
+  //   const { searchParams, origin, pathname } = new URL(request.url);
 
-
-    if (region) {
-      // TODO: paginate data if have more than 20 projects
-      const { projects, length, region: matchedRegion } = await getProjects({ region })
-      return new Response(JSON.stringify({ length, region: matchedRegion?.region_name, projects }), { status: 200, headers: { 'Content-Type': 'application/json' } })
-    }
-
-    if (page < 1 || limit < 1) return new Response('Invalid query parameters', { status: 400 });
+  //   const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
 
 
-    const { projects, length } = await getProjects();
-    let paginatedData = getPaginatedData<Project>(projects, page, limit)
+  //   if (region) {
+  //     // TODO: paginate data if have more than 20 projects
+  //     const { projects, length, region: matchedRegion } = await getProjects({ region })
+  //     return new Response(JSON.stringify({ length, region: matchedRegion?.region_name, projects }), { status: 200, headers: { 'Content-Type': 'application/json' } })
+  //   }
 
-    const next_url = `${origin + pathname}?page=${page + 1}&limit=${limit}`
-    const prev_url = `${origin + pathname}?page=${page - 1}&limit=${limit}`
-    const total_pages = Math.ceil(length / limit) | 1
+  //   if (page < 1 || limit < 1) return new Response('Invalid query parameters', { status: 400 });
 
-    const resp: APIResponse<Project[]> = {
-      data: paginatedData, pagination: {
-        total: length, items_per_page: limit ? limit : length, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
-      }
-    }
 
-    return new Response(
-      JSON.stringify(resp),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+  //   const { projects, length } = await getProjects();
+  //   let paginatedData = getPaginatedData<Project>(projects, page, limit)
 
-  } catch (error) {
-    // TODO: make a service for errors type
-    let message
-    if (error instanceof Error) message = error.message
-    else message = String(error)
+  //   const next_url = `${origin + pathname}?page=${page + 1}&limit=${limit}`
+  //   const prev_url = `${origin + pathname}?page=${page - 1}&limit=${limit}`
+  //   const total_pages = Math.ceil(length / limit) | 1
 
-    return new Response(
-      JSON.stringify({ error: message }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
+  //   const resp: APIResponse<Project[]> = {
+  //     data: paginatedData, pagination: {
+  //       total: length, items_per_page: limit ? limit : length, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
+  //     }
+  //   }
+
+  //   return new Response(
+  //     JSON.stringify(resp),
+  //     { status: 200, headers: { 'Content-Type': 'application/json' } }
+  //   );
+
+  // } catch (error) {
+  //   // TODO: make a service for errors type
+  //   let message
+  //   if (error instanceof Error) message = error.message
+  //   else message = String(error)
+
+  //   return new Response(
+  //     JSON.stringify({ error: message }),
+  //     { status: 500, headers: { 'Content-Type': 'application/json' } }
+  //   );
+  // }
 }
