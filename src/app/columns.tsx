@@ -1,10 +1,10 @@
 'use client'
 
-import { formatAmount } from '@/utils/formatAmount'
 import { ColumnDef } from '@tanstack/react-table'
-import { DataTableColumnHeader } from '../../../components/data-table/DataTableColumnHeader'
-import { Badge } from '../../../components/ui/badge'
+import { DataTableColumnHeader } from '@/components/data-table/DataTableColumnHeader'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { formatAmount } from '@/utils/formatAmount'
 import { Project } from '@/types/projects'
 
 export const columns: ColumnDef<Project>[] = [
