@@ -1,4 +1,4 @@
-import { prismaLocal as prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 const selector = {
   project_id: true,

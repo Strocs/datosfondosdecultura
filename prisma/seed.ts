@@ -1,11 +1,11 @@
-import { prismaLocal as prisma } from '@/lib/prisma'
+import prisma from '@/lib/prisma'
 import { JSONDatabase, Region } from '@/types/projects'
 import { Funds, Lines, Projects } from '@prisma/client'
 import fs from 'fs'
 import path from 'path'
 
 
-const BASE_PATH = path.resolve('db/json')
+const BASE_PATH = path.resolve(process.cwd(), 'db/json')
 
 async function main() {
   try {
