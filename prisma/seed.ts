@@ -10,7 +10,7 @@ const BASE_PATH = path.resolve(process.cwd(), 'db/json')
 async function main() {
   try {
 
-    const { funds, lines, projects, regions } = await getDataToUpdate()
+    const { funds, lines, projects, regions } = await getDataFromJson()
 
     if (!funds && !lines && !projects && !regions) {
       console.log('No new data to seed')
@@ -60,7 +60,7 @@ function getDataFromJson() {
     fs.readFileSync(`${BASE_PATH}/projects.json`, 'utf-8')
   )
 
-  return { regions, funds, lines, projects }
+  return { regions: formatRegionsWithDBSchema(regions), funds, lines, projects }
 }
 
 async function getDataToUpdate() {
@@ -71,7 +71,7 @@ async function getDataToUpdate() {
   const dbFunds = await prisma.funds.findMany()
   const dbProjects = await prisma.projects.findMany()
 
-  const regionsFiltered = formatRegionsWithDBSchema(regions).filter(
+  const regionsFiltered = regions.filter(
     project =>
       !dbRegions.some(dbRegion => dbRegion.region_id === project.region_id)
   )

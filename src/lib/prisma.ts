@@ -5,7 +5,7 @@ import { createClient } from '@libsql/client'
 //! Since syncUrl seems to be broke, I need to manually change the env url to work in remote or local
 
 export const client = createClient({
-  url: 'file:../../db/local.db',
+  url: 'file:local.db',
   syncUrl: `${process.env.TURSO_DATABASE_URL}`,
   authToken: `${process.env.TURSO_AUTH_TOKEN}`,
 })
