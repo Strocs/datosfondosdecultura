@@ -83,7 +83,7 @@ export async function GET(request: Request) {
 
     return new Response(
       JSON.stringify(resp),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=31536000, immutable', } }
     );
 
   } catch (error) {
