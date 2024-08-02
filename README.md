@@ -25,6 +25,7 @@ turso db shell <turso-db-name> < ./prisma/migrations/<migration-hash>/migration.
 ### API
 - [x] Validate data from DB with schemas
 - [ ] Cache responses with Vercel KV
+- [ ] Work with local db and avoid cache data in development
 --- 
 
 ### APP

@@ -5,6 +5,7 @@ import { parseQueryParams } from '@/utils/api/parseQueryParams';
 import { PrismaClient } from '@prisma/client'
 import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
+import kv from '@/lib/vercelKv';
 
 
 
@@ -23,10 +24,16 @@ export async function GET(request: Request) {
   const prisma = cachedClient
 
   try {
-    const { searchParams, origin, pathname } = new URL(request.url);
+    const { searchParams, origin, pathname, search } = new URL(request.url);
 
     const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
 
+    const cacheKey = `dfc-${pathname}`;
+    const cachedData = await kv.get(cacheKey);
+
+    if (cachedData) {
+      return new Response(JSON.stringify(cachedData), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=31536000, immutable', } });
+    }
 
     // if (region) {
     //   // TODO: paginate data if have more than 20 projects
@@ -80,6 +87,8 @@ export async function GET(request: Request) {
         total: length, items_per_page: limit ? limit : length, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
       }
     }
+
+    await kv.set(cacheKey, resp, { ex: 31536000 })
 
     return new Response(
       JSON.stringify(resp),
