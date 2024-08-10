@@ -1,4 +1,3 @@
-import { getProjects } from '@/services/projectService';
 import { Project, APIResponse } from '@/types/projects';
 import { getPaginatedData } from '@/utils/api/getPaginatedData';
 import { parseQueryParams } from '@/utils/api/parseQueryParams';
@@ -9,7 +8,7 @@ import kv from '@/lib/vercelKv';
 
 
 
-let cachedClient: PrismaClient<{ adapter: PrismaLibSQL }> | null = null
+let cachedClient: PrismaClient | null = null
 
 export async function GET(request: Request) {
   if (!cachedClient) {
