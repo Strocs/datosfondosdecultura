@@ -12,28 +12,28 @@ interface DataTableToolbarProps<TData> {
   filters?: Filter[]
 }
 
-export function DataTableToolbar<TData> ({
+export function DataTableToolbar<TData>({
   table,
-  filters
+  filters,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0
 
   return (
-    <div className='flex items-start justify-between py-4'>
-      <div className='flex flex-1 flex-col md:flex-row md:items-start space-y-2 md:space-y-0 md:space-x-2'>
+    <div className="flex items-start justify-between py-4">
+      <div className="flex flex-1 flex-col md:flex-row md:items-start space-y-2 md:space-y-0 md:space-x-2">
         <Input
-          placeholder='Buscar proyecto'
+          placeholder="Buscar proyecto"
           value={
             (table.getColumn('project_name')?.getFilterValue() as string) ?? ''
           }
-          onChange={event =>
+          onChange={(event) =>
             table.getColumn('project_name')?.setFilterValue(event.target.value)
           }
-          className='max-w-sm'
+          className="max-w-sm"
         />
         {filters && (
-          <div className='flex flex-1 items-center gap-2 flex-wrap'>
-            {filters.map(filter => {
+          <div className="flex flex-1 items-center gap-2 flex-wrap">
+            {filters.map((filter) => {
               return (
                 table.getColumn(filter.column) && (
                   <DataTableFacetedFilter
@@ -47,12 +47,12 @@ export function DataTableToolbar<TData> ({
             })}
             {isFiltered && (
               <Button
-                variant='ghost'
+                variant="ghost"
                 onClick={() => table.resetColumnFilters()}
-                className='h-8 px-2 lg:px-3'
+                className="h-8 px-2 lg:px-3"
               >
                 Reset
-                <Cross2Icon className='ml-2 h-4 w-4' />
+                <Cross2Icon className="ml-2 h-4 w-4" />
               </Button>
             )}
           </div>

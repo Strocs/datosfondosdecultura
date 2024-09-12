@@ -4,12 +4,10 @@ import { Funds, Lines, Projects } from '@prisma/client'
 import fs from 'fs'
 import path from 'path'
 
-
 const BASE_PATH = path.resolve(process.cwd(), 'db/json')
 
 async function main() {
   try {
-
     const { funds, lines, projects, regions } = await getDataFromJson()
 
     if (!funds && !lines && !projects && !regions) {

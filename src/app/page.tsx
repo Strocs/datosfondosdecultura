@@ -1,7 +1,7 @@
 import { ModeToggle } from '@/components/ModeToggle'
 import Link from 'next/link'
 
-export default async function Home () {
+export default async function Home() {
   return (
     <>
       <header className='container py-6 flex justify-between'>

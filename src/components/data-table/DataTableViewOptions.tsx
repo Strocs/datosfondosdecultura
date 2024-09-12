@@ -10,44 +10,44 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>
 }
 
-export function DataTableViewOptions<TData> ({
-  table
+export function DataTableViewOptions<TData>({
+  table,
 }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='outline'
-          size='sm'
-          className='ml-auto hidden h-8 lg:flex'
+          variant="outline"
+          size="sm"
+          className="ml-auto hidden h-8 lg:flex"
         >
-          <MixerHorizontalIcon className='mr-2 h-4 w-4' />
+          <MixerHorizontalIcon className="mr-2 h-4 w-4" />
           Ver
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='w-[170px]'>
+      <DropdownMenuContent align="end" className="w-[170px]">
         <DropdownMenuLabel>Alternar Columnas</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {table
           .getAllColumns()
           .filter(
-            column =>
+            (column) =>
               typeof column.accessorFn !== 'undefined' && column.getCanHide()
           )
-          .map(column => {
+          .map((column) => {
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
-                className='capitalize'
+                className="capitalize"
                 checked={column.getIsVisible()}
-                onCheckedChange={value => column.toggleVisibility(!!value)}
+                onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
                 {(column.columnDef.meta as string) || column.id}
               </DropdownMenuCheckboxItem>
