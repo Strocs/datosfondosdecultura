@@ -1,3 +1,4 @@
+import { LogoLink } from '@/components/LogoLink'
 import { ModeToggle } from '@/components/ModeToggle'
 import Link from 'next/link'
 
@@ -5,15 +6,7 @@ export default async function Home() {
   return (
     <>
       <header className='container py-6 flex justify-between'>
-        <Link href='/' className='flex gap-1 items-center group'>
-          <span className='overflow-hidden w-[1ch] group-hover:w-full text-5xl font-black transition-all duration-300 ease-in'>
-            Datos
-          </span>
-          <p className='text-xl font-light leading-4 text-nowrap'>
-            Fondos <i>de</i> <br />
-            <span className='font-bold tracking-[0.175em]'>Cultura</span>
-          </p>
-        </Link>
+        <LogoLink />
         <div className='flex gap-4 items-center'>
           <nav>
             <Link href='/proyectos'>2024</Link>
