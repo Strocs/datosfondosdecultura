@@ -24,8 +24,8 @@ import {
 } from '@/components/ui/table'
 
 import { useState } from 'react'
-import { DataTablePagination } from '@/components/data-table/DataTablePagination'
-import { DataTableToolbar } from '@/components/data-table/DataTableToolbar'
+import { DataTablePagination } from '@/components/data-table/data-table-pagination'
+import { DataTableToolbar } from '@/components/data-table/data-table-toolbar'
 import { Filter } from '@/types/projects'
 
 interface DataTableProps<TData, TValue> {
@@ -70,9 +70,9 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <section className="py-4">
+    <section className=''>
       <DataTableToolbar table={table} filters={filters} />
-      <div className="border shadow-md mb-4 rounded-xl">
+      <div className='bg-background border mb-4 rounded-xl'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -113,7 +113,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className='h-24 text-center'
                 >
                   No hay resultados.
                 </TableCell>

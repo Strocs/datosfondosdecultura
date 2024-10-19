@@ -1,6 +1,6 @@
 import { fetchUrl, getPdfLink } from './index.js'
 
-export async function scraper (url) {
+export async function scraper(url) {
   try {
     const page = await fetchUrl(url)
     const pdfLink = getPdfLink(page)

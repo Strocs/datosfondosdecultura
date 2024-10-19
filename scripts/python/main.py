@@ -6,6 +6,7 @@ args_year = 2024
 args_update = True
 local_work = True
 
+
 db = LocalDBManager()
 
 pdfs_db, regions_db, projects_db, funds_db, lines_db = (
@@ -26,7 +27,6 @@ pdfs = get_data_by_year(args_year, pdfs_db)
 
 for project_type, pdf_urls in pdfs["data"].items():  # type: ignore
     for index, pdf_url in enumerate(pdf_urls):
-
         pdf = fetch(pdf_url, local=local_work)
         # save_pdf_on_local(pdf, f"{index}_{project_type}_{pdfs['year']}.pdf")  # type: ignore
 
