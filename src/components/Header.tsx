@@ -1,13 +1,10 @@
 import { LogoLink } from './LogoLink'
-import { ModeToggle } from './ModeToggle'
 
 export const Header = () => {
   return (
-    <header className='px-4 h-24 flex justify-between'>
+    <header className='flex h-24 w-10/12 justify-between px-4'>
       <LogoLink />
-      <div className='flex gap-4 items-center'>
-        <ModeToggle />
-      </div>
+      <div className='flex items-center gap-4'></div>
     </header>
   )
 }

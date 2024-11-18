@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
   return (
     <section className=''>
       <DataTableToolbar table={table} filters={filters} />
-      <div className='bg-background border mb-4 rounded-xl'>
+      <div className='mb-4 rounded-xl border bg-background'>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   )
@@ -97,13 +97,12 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
+                  data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -113,8 +112,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
-                >
+                  className='h-24 text-center'>
                   No hay resultados.
                 </TableCell>
               </TableRow>
