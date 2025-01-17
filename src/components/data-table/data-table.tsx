@@ -11,7 +11,7 @@ import {
   getSortedRowModel,
   SortingState,
   useReactTable,
-  VisibilityState
+  VisibilityState,
 } from '@tanstack/react-table'
 
 import {
@@ -20,12 +20,12 @@ import {
   TableRow,
   TableHead,
   TableBody,
-  TableCell
+  TableCell,
 } from '@/components/ui/table'
 
 import { useState } from 'react'
-import { DataTablePagination } from '@/components/data-table/DataTablePagination'
-import { DataTableToolbar } from '@/components/data-table/DataTableToolbar'
+import { DataTablePagination } from '@/components/data-table/data-table-pagination'
+import { DataTableToolbar } from '@/components/data-table/data-table-toolbar'
 import { Filter } from '@/types/projects'
 
 interface DataTableProps<TData, TValue> {
@@ -34,17 +34,17 @@ interface DataTableProps<TData, TValue> {
   filters?: Filter[]
 }
 
-export function DataTable<TData, TValue> ({
+export function DataTable<TData, TValue>({
   columns,
   data,
-  filters
+  filters,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     project_id: false,
-    project_year: false
+    project_year: false,
   })
 
   const table = useReactTable({
@@ -54,7 +54,7 @@ export function DataTable<TData, TValue> ({
       sorting,
       columnVisibility,
       rowSelection,
-      columnFilters
+      columnFilters,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -66,25 +66,25 @@ export function DataTable<TData, TValue> ({
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues()
+    getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
   return (
-    <section className='py-4'>
+    <section className=''>
       <DataTableToolbar table={table} filters={filters} />
-      <div className='border shadow-md mb-4 rounded-xl'>
+      <div className='mb-4 rounded-xl border bg-background'>
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
+            {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
+                {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   )
@@ -94,16 +94,15 @@ export function DataTable<TData, TValue> ({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map(row => (
+              table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                >
-                  {row.getVisibleCells().map(cell => (
+                  data-state={row.getIsSelected() && 'selected'}>
+                  {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -113,8 +112,7 @@ export function DataTable<TData, TValue> ({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
-                >
+                  className='h-24 text-center'>
                   No hay resultados.
                 </TableCell>
               </TableRow>

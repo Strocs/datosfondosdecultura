@@ -1,11 +1,11 @@
 'use client'
 
-import { ColumnDef } from '@tanstack/react-table'
-import { DataTableColumnHeader } from '@/components/data-table/DataTableColumnHeader'
+import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
-import { formatAmount } from '@/utils/formatAmount'
 import { Project } from '@/types/projects'
+import { formatAmount } from '@/utils/formatAmount'
+import { ColumnDef } from '@tanstack/react-table'
 
 export const columns: ColumnDef<Project>[] = [
   {
@@ -14,7 +14,7 @@ export const columns: ColumnDef<Project>[] = [
     enableSorting: false,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Folio' />
-    )
+    ),
   },
   {
     accessorKey: 'project_year',
@@ -22,7 +22,7 @@ export const columns: ColumnDef<Project>[] = [
     enableSorting: false,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Año' />
-    )
+    ),
   },
   {
     accessorKey: 'project_name',
@@ -30,7 +30,7 @@ export const columns: ColumnDef<Project>[] = [
     enableSorting: false,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Nombre' />
-    )
+    ),
   },
   {
     accessorKey: 'project_owner',
@@ -38,7 +38,7 @@ export const columns: ColumnDef<Project>[] = [
     enableSorting: false,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Responsable' />
-    )
+    ),
   },
   {
     id: 'region',
@@ -49,7 +49,7 @@ export const columns: ColumnDef<Project>[] = [
     ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
-    }
+    },
   },
   {
     id: 'fund',
@@ -60,7 +60,7 @@ export const columns: ColumnDef<Project>[] = [
     ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
-    }
+    },
   },
   {
     id: 'line',
@@ -71,14 +71,14 @@ export const columns: ColumnDef<Project>[] = [
     ),
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
-    }
+    },
   },
   {
     accessorKey: 'modality',
     meta: 'Modalidad',
     header: ({ column }) => (
       <DataTableColumnHeader className='' column={column} title='Modalidad' />
-    )
+    ),
   },
   {
     accessorKey: 'status',
@@ -95,7 +95,7 @@ export const columns: ColumnDef<Project>[] = [
             'bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700':
               status === 'Selección',
             'bg-neutral-400 hover:bg-neutral-500 dark:bg-neutral-600 dark:hover:bg-neutral-700':
-              status === 'Lista de Espera'
+              status === 'Lista de Espera',
           })}
         >
           {status}
@@ -104,7 +104,7 @@ export const columns: ColumnDef<Project>[] = [
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
-    }
+    },
   },
   {
     accessorKey: 'amount_assigned',
@@ -118,6 +118,6 @@ export const columns: ColumnDef<Project>[] = [
 
       const formatted = formatAmount(amount)
       return <div>{formatted}</div>
-    }
-  }
+    },
+  },
 ]

@@ -1,15 +1,12 @@
-import { getProjects } from '@/services/projectService';
-import { Project, APIResponse } from '@/types/projects';
-import { getPaginatedData } from '@/utils/api/getPaginatedData';
-import { parseQueryParams } from '@/utils/api/parseQueryParams';
+import { Project, APIResponse } from '@/types/projects'
+import { getPaginatedData } from '@/utils/api/getPaginatedData'
+import { parseQueryParams } from '@/utils/api/parseQueryParams'
 import { PrismaClient } from '@prisma/client'
 import { PrismaLibSQL } from '@prisma/adapter-libsql'
 import { createClient } from '@libsql/client'
-import kv from '@/lib/vercelKv';
+import kv from '@/lib/vercelKv'
 
-
-
-let cachedClient: PrismaClient<{ adapter: PrismaLibSQL }> | null = null
+let cachedClient: PrismaClient | null = null
 
 export async function GET(request: Request) {
   if (!cachedClient) {
@@ -24,15 +21,22 @@ export async function GET(request: Request) {
   const prisma = cachedClient
 
   try {
-    const { searchParams, origin, pathname, search } = new URL(request.url);
+    const { searchParams, origin, pathname, search } = new URL(request.url)
 
-    const { region, line, type, sortBy, order, page, limit } = parseQueryParams(searchParams)
+    const { region, line, type, sortBy, order, page, limit } =
+      parseQueryParams(searchParams)
 
-    const cacheKey = `dfc-${pathname}`;
-    const cachedData = await kv.get(cacheKey);
+    const cacheKey = `dfc-${pathname}`
+    const cachedData = await kv.get(cacheKey)
 
     if (cachedData) {
-      return new Response(JSON.stringify(cachedData), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=31536000, immutable', } });
+      return new Response(JSON.stringify(cachedData), {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      })
     }
 
     // if (region) {
@@ -43,9 +47,7 @@ export async function GET(request: Request) {
 
     // if (page < 1 || limit < 1) return new Response('Invalid query parameters', { status: 400 });
 
-
     // const { projects, length } = await getProjects();
-
 
     const projects = await prisma.projects.findMany({
       select: {
@@ -54,24 +56,24 @@ export async function GET(request: Request) {
         project_owner: true,
         region: {
           select: {
-            region_name: true
-          }
+            region_name: true,
+          },
         },
         fund: {
           select: {
-            fund_name: true
-          }
+            fund_name: true,
+          },
         },
         project_year: true,
         line: {
           select: {
-            line_name: true
-          }
+            line_name: true,
+          },
         },
         modality: true,
         status: true,
         amount_assigned: true,
-      }
+      },
     })
 
     let paginatedData = getPaginatedData<Project>(projects, page, limit)
@@ -83,27 +85,35 @@ export async function GET(request: Request) {
     const total_pages = Math.ceil(length / limit) | 1
 
     const resp: APIResponse<Project[]> = {
-      data: paginatedData, pagination: {
-        total: length, items_per_page: limit ? limit : length, current_page: page, total_pages, next_url: page < total_pages ? next_url : null, prev_url: page > 1 ? prev_url : null
-      }
+      data: paginatedData,
+      pagination: {
+        total: length,
+        items_per_page: limit ? limit : length,
+        current_page: page,
+        total_pages,
+        next_url: page < total_pages ? next_url : null,
+        prev_url: page > 1 ? prev_url : null,
+      },
     }
 
     await kv.set(cacheKey, resp, { ex: 31536000 })
 
-    return new Response(
-      JSON.stringify(resp),
-      { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=31536000, immutable', } }
-    );
-
+    return new Response(JSON.stringify(resp), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    })
   } catch (error) {
     // TODO: make a service for errors type
     let message
     if (error instanceof Error) message = error.message
     else message = String(error)
 
-    return new Response(
-      JSON.stringify({ error: message }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ error: message }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 }

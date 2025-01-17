@@ -2,7 +2,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
-  DoubleArrowRightIcon
+  DoubleArrowRightIcon,
 } from '@radix-ui/react-icons'
 import { Table } from '@tanstack/react-table'
 
@@ -12,15 +12,15 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from '@/components/ui/select'
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>
 }
 
-export function DataTablePagination<TData> ({
-  table
+export function DataTablePagination<TData>({
+  table,
 }: DataTablePaginationProps<TData>) {
   return (
     <div className='flex flex-col md:flex-row items-center justify-between px-2 space-y-4 md:space-y-0'>
@@ -39,7 +39,7 @@ export function DataTablePagination<TData> ({
           <p className='text-sm font-medium'>Proyectos por página</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
-            onValueChange={value => {
+            onValueChange={(value) => {
               table.setPageSize(Number(value))
             }}
           >
@@ -47,7 +47,7 @@ export function DataTablePagination<TData> ({
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side='top'>
-              {[10, 20, 30, 40, 50].map(pageSize => (
+              {[5, 10, 20, 30, 40, 50].map((pageSize) => (
                 <SelectItem key={pageSize} value={`${pageSize}`}>
                   {pageSize}
                 </SelectItem>

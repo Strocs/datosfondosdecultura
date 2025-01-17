@@ -49,7 +49,6 @@ def fetch(url, local=False):
         response.raise_for_status()
         return response.content
     else:
-
         with open(url, "rb") as local_pdf_file:
             return local_pdf_file.read()
 
