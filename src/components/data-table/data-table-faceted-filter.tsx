@@ -44,24 +44,22 @@ export function DataTableFacetedFilter<TData, TValue>({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 border-dashed">
-          <PlusCircledIcon className="mr-2 h-4 w-4" />
+        <Button variant='outline' size='sm' className='h-8 border-dashed'>
+          <PlusCircledIcon className='mr-2 h-4 w-4' />
           {title}
           {selectedValues?.size > 0 && (
             <>
-              <Separator orientation="vertical" className="mx-2 h-4" />
+              <Separator orientation='vertical' className='mx-2 h-4' />
               <Badge
-                variant="secondary"
-                className="rounded-sm px-1 font-normal lg:hidden"
-              >
+                variant='secondary'
+                className='rounded-sm px-1 font-normal lg:hidden'>
                 {selectedValues.size}
               </Badge>
-              <div className="hidden space-x-1 lg:flex">
+              <div className='hidden space-x-1 lg:flex'>
                 {selectedValues.size > 1 ? (
                   <Badge
-                    variant="secondary"
-                    className="rounded-sm px-1 font-normal"
-                  >
+                    variant='secondary'
+                    className='rounded-sm px-1 font-normal'>
                     {selectedValues.size} seleccionados
                   </Badge>
                 ) : (
@@ -69,10 +67,9 @@ export function DataTableFacetedFilter<TData, TValue>({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        variant="secondary"
+                        variant='secondary'
                         key={option.value}
-                        className="rounded-sm px-1 font-normal w-full full text-wrap max-w-40  line-clamp-1"
-                      >
+                        className='full line-clamp-1 w-full max-w-40 rounded-sm px-1 font-normal text-wrap'>
                         {option.label}
                       </Badge>
                     ))
@@ -82,7 +79,7 @@ export function DataTableFacetedFilter<TData, TValue>({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-fit max-w-80 p-0 mx-1" align="start">
+      <PopoverContent className='mx-1 w-fit max-w-80 p-0' align='start'>
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
@@ -103,28 +100,26 @@ export function DataTableFacetedFilter<TData, TValue>({
 
                         const filterValues = Array.from(selectedValues)
                         column?.setFilterValue(
-                          filterValues.length ? filterValues : undefined
+                          filterValues.length ? filterValues : undefined,
                         )
-                      }}
-                    >
+                      }}>
                       <div
                         className={cn(
-                          'mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary',
+                          'border-primary mr-2 flex h-4 w-4 items-center justify-center rounded-sm border',
                           isSelected
                             ? 'bg-primary text-primary-foreground'
-                            : 'opacity-50 [&_svg]:invisible'
-                        )}
-                      >
+                            : 'opacity-50 [&_svg]:invisible',
+                        )}>
                         <CheckIcon className={cn('h-4 w-4')} />
                       </div>
                       {option.icon && (
-                        <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <option.icon className='text-muted-foreground mr-2 h-4 w-4' />
                       )}
                       {/* Column Name */}
-                      <span className="pr-2">{option.label}</span>
+                      <span className='pr-2'>{option.label}</span>
                       {/* Column length */}
                       {
-                        <span className="ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs">
+                        <span className='ml-auto flex h-4 w-4 items-center justify-center font-mono text-xs'>
                           {facets.get(option.value)}
                         </span>
                       }
@@ -139,8 +134,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                 <CommandGroup>
                   <CommandItem
                     onSelect={() => column?.setFilterValue(undefined)}
-                    className="justify-center text-center"
-                  >
+                    className='justify-center text-center'>
                     Limpiar filtros
                   </CommandItem>
                 </CommandGroup>
